@@ -1,13 +1,13 @@
 version: 1
 status: PROPOSED_NOT_CERTIFIED
 source:
-  repository: https://github.com/jkershawrh/virtualization-ai-401
+  repository: https://github.com/jkershawrh/virtualization-ai-501
   revision: 255e6ba2ff6f8fd4734a9af7c0de3d6130abfd81
   prerequisite: https://github.com/jkershawrh/virtualization-ai-301@91e30a4af72bb4a15a4e5dfe2f29abb5692c698f
 candidate:
   outcome: Operate Hybrid VM and AI Workloads
-  presentation_image: ghcr.io/jkershawrh/virtualization-ai-401-presentation@sha256:3b380eb7e46e82f95317e303d56898787d528bbac9272f6bdaa4f6d19a02920c
-  operations_adapter_image: ghcr.io/jkershawrh/virtualization-ai-401-operations-adapter@sha256:2e68e78c81b5be284160145191c0ca138b057d0859a74d99dd53de4374996ffa
+  presentation_image: ghcr.io/jkershawrh/virtualization-ai-501-presentation@sha256:3b380eb7e46e82f95317e303d56898787d528bbac9272f6bdaa4f6d19a02920c
+  operations_adapter_image: ghcr.io/jkershawrh/virtualization-ai-501-operations-adapter@sha256:2e68e78c81b5be284160145191c0ca138b057d0859a74d99dd53de4374996ffa
   platform: linux/amd64
   default_source_state: REHEARSAL
 catalog:

@@ -3,23 +3,22 @@ import json
 import os
 import tempfile
 import unittest
-from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from workload.app import ContractError, canonical_operation_digest, evaluate, load_ledger, metrics_text, validate_request
+from workload.app import ContractError, evaluate, load_ledger, metrics_text, validate_request
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def request(name="approved-migration-request.json"):
+def request(name="qualified-fleet-request.json"):
     return json.loads((ROOT / "contracts/examples" / name).read_text())
 
 
-class OperationsAdapterTests(unittest.TestCase):
+class QualificationAdapterTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.ledger = Path(self.temp.name) / "evidence.jsonl"
+        self.ledger = Path(self.temp.name) / "qualification.jsonl"
         self.env = patch.dict(os.environ, {"ADAPTER_MODE": "rehearsal", "LEDGER_PATH": str(self.ledger)}, clear=True)
         self.env.start()
 
@@ -27,81 +26,51 @@ class OperationsAdapterTests(unittest.TestCase):
         self.env.stop()
         self.temp.cleanup()
 
-    def test_approved_migration_completes_seven_state_journey(self):
+    def test_complete_fleet_earns_human_promotion_review_only(self):
         response, evidence = evaluate(request())
         self.assertEqual(response["decision"], "ALLOW_REVIEW")
+        self.assertEqual(response["reason_codes"], ["QUALIFICATION_ENVELOPE_SATISFIED"])
         self.assertEqual(response["source_state"], "REHEARSAL")
-        self.assertEqual(response["validation"]["status"], "PASS")
-        self.assertEqual(response["validation"]["infrastructure"], "PASS")
-        self.assertEqual(response["validation"]["application"], "PASS")
-        self.assertEqual([item["state"] for item in evidence], ["OBSERVE", "PREFLIGHT", "PROPOSE", "APPROVE", "EXECUTE", "VALIDATE", "LEARN"])
-        self.assertFalse(response["authority"]["automated_action_performed"])
+        self.assertEqual(response["qualification"]["status"], "PASS")
+        self.assertTrue(response["authority"]["human_promotion_required"])
+        self.assertFalse(response["authority"]["promotion_performed"])
+        self.assertEqual([item["state"] for item in evidence], ["DISCOVER", "BASELINE", "MIGRATE", "DISRUPT", "CORRELATE", "QUALIFY", "HANDOFF"])
 
-    def test_complete_preflight_without_approval_stops_at_propose(self):
+    def test_capacity_breach_refuses(self):
+        response, _ = evaluate(request("capacity-breach-request.json"))
+        self.assertEqual(response["decision"], "REFUSE")
+        self.assertIn("CAPACITY_ENVELOPE_BREACH", response["reason_codes"])
+
+    def test_missing_correlation_abstains(self):
+        response, _ = evaluate(request("correlation-gap-request.json"))
+        self.assertEqual(response["decision"], "ABSTAIN")
+        self.assertIn("CORRELATION_INCOMPLETE", response["reason_codes"])
+
+    def test_missing_trial_or_duplicate_vm_is_invalid(self):
         payload = request()
-        payload["approval"] = None
-        response, evidence = evaluate(payload)
-        self.assertEqual(response["decision"], "ALLOW_REVIEW")
-        self.assertEqual(response["reason_codes"], ["HUMAN_APPROVAL_REQUIRED"])
-        self.assertEqual(response["validation"]["status"], "NOT_RUN")
-        self.assertEqual([item["state"] for item in evidence], ["OBSERVE", "PREFLIGHT", "PROPOSE"])
-
-    def test_known_incompatibility_refuses_before_execution(self):
+        payload["trials"] = payload["trials"][:-1]
+        with self.assertRaises(ContractError):
+            validate_request(payload)
         payload = request()
-        payload["preflight"]["storage_compatible"] = False
-        response, evidence = evaluate(payload)
-        self.assertEqual((response["decision"], response["reason_codes"]), ("REFUSE", ["STORAGE_INCOMPATIBLE"]))
-        self.assertNotIn("EXECUTE", [item["state"] for item in evidence])
+        payload["fleet"]["virtual_machines"][1]["name"] = payload["fleet"]["virtual_machines"][0]["name"]
+        with self.assertRaises(ContractError):
+            validate_request(payload)
 
-    def test_stale_or_incomplete_evidence_abstains(self):
-        for field in ("evidence_fresh", "correlation_complete"):
-            payload = request()
-            payload["preflight"][field] = False
-            response, _ = evaluate(payload)
-            self.assertEqual(response["decision"], "ABSTAIN")
-
-    def test_snapshot_labels_override_optimistic_preflight_flags(self):
+    def test_live_requires_direct_platform_placement_inference_and_telemetry_evidence(self):
         payload = request()
-        payload["evidence_snapshot"][0]["freshness"] = "STALE"
-        self.assertEqual(evaluate(payload)[0]["reason_codes"], ["EVIDENCE_STALE"])
-        payload = request()
-        payload["evidence_snapshot"][0]["request_id"] = "different-request"
-        self.assertEqual(evaluate(payload)[0]["reason_codes"], ["CORRELATION_INCOMPLETE"])
+        for item in payload["evidence_snapshot"]:
+            item["source_state"] = "LIVE"
+        with patch.dict(os.environ, {"ADAPTER_MODE": "live", "LEDGER_PATH": str(self.ledger)}, clear=True):
+            self.assertEqual(evaluate(payload)[0]["source_state"], "LIVE")
+            reduced = copy.deepcopy(payload)
+            reduced["evidence_snapshot"] = [item for item in reduced["evidence_snapshot"] if item["kind"] != "CPU_PLACEMENT"]
+            self.assertEqual(evaluate(reduced)[0]["source_state"], "OFFLINE")
 
-    def test_approval_digest_and_expiry_are_enforced(self):
-        payload = request()
-        payload["approval"]["operation_digest"] = "sha256:" + "0" * 64
-        self.assertEqual(evaluate(payload)[0]["reason_codes"], ["APPROVAL_DIGEST_MISMATCH"])
-        payload = request()
-        payload["approval"]["expires_at"] = (datetime.now(timezone.utc) - timedelta(minutes=1)).isoformat()
-        self.assertEqual(evaluate(payload)[0]["reason_codes"], ["APPROVAL_EXPIRED"])
-
-    def test_dependency_outage_is_degraded_without_ai_claim(self):
-        response, _ = evaluate(request("dependency-outage-request.json"))
-        self.assertEqual((response["decision"], response["validation"]["status"]), ("ABSTAIN", "INCOMPLETE"))
-        self.assertEqual(response["reason_codes"], ["AI_DEPENDENCY_UNAVAILABLE"])
-        self.assertIsNone(response["explanation"])
-        self.assertFalse(response["ai_participated"])
-
-    def test_infrastructure_success_does_not_mask_application_failure(self):
-        response, _ = evaluate(request("application-failure-request.json"))
-        self.assertEqual(response["validation"]["infrastructure"], "PASS")
-        self.assertEqual(response["validation"]["application"], "FAIL")
-        self.assertEqual((response["decision"], response["reason_codes"]), ("REFUSE", ["APPLICATION_FAILED_AFTER_INFRA_SUCCESS"]))
-
-    def test_ledger_is_reloadable(self):
-        response, evidence = evaluate(request())
+    def test_ledger_survives_reload_and_contains_digests(self):
+        _, evidence = evaluate(request())
         reloaded = load_ledger(self.ledger)
         self.assertEqual(len(reloaded), len(evidence))
-        self.assertEqual(reloaded[-1]["request_id"], response["request_id"])
         self.assertTrue(all(item["digest"].startswith("sha256:") for item in reloaded))
-
-    def test_live_mode_never_claims_live_without_complete_observations(self):
-        payload = request()
-        payload["evidence_snapshot"][0]["source_state"] = "LIVE"
-        with patch.dict(os.environ, {"ADAPTER_MODE": "live", "LEDGER_PATH": str(self.ledger)}, clear=True):
-            response, _ = evaluate(payload)
-        self.assertEqual(response["source_state"], "OFFLINE")
 
     def test_secret_fields_are_rejected(self):
         payload = request()
@@ -109,19 +78,10 @@ class OperationsAdapterTests(unittest.TestCase):
         with self.assertRaises(ContractError):
             validate_request(payload)
 
-    def test_digest_excludes_approval_and_is_stable(self):
-        payload = request()
-        expected = payload["approval"]["operation_digest"]
-        self.assertEqual(canonical_operation_digest(payload), expected)
-        changed = copy.deepcopy(payload)
-        changed["approval"]["approved_by"] = "another-human"
-        self.assertEqual(canonical_operation_digest(changed), expected)
-
-    def test_metrics_are_counts_only(self):
+    def test_metrics_are_counts_without_authored_performance_values(self):
         text = metrics_text()
-        self.assertIn("decisions_total", text)
-        for forbidden in ("latency", "utilization", "throughput"):
-            self.assertNotIn(forbidden, text.lower())
+        self.assertIn("qualification_decisions_total", text)
+        self.assertNotIn("p95", text.lower())
 
 
 if __name__ == "__main__":

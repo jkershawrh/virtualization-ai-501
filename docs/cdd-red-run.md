@@ -1,22 +1,13 @@
-# CDD/TDD RED checkpoint
+# CDD → TDD → EDD qualification record
 
-The discovery and contract intent exist, but implementation is intentionally RED.
+## Contract-driven development
 
-Missing gates:
+The 501 boundary accepts an externally observed multi-VM inference-fleet snapshot and returns a deterministic qualification recommendation plus a durable evidence chain. It has no OpenShift mutation, certification, ordering, or promotion authority. Quantitative results are request evidence, never authored claims.
 
-- the prerequisite Virtualization + AI 301 immutable release receipt;
-- typed operation request, response, evidence, approval, and validation schemas;
-- deterministic policy implementation and tests for ALLOW_REVIEW, REFUSE, and
-  ABSTAIN;
-- rehearsal fixtures for migration success, dependency outage, timeout, and
-  split recovery;
-- presentation scenes and guided Showroom lab;
-- Linux/AMD64 presentation and operations-adapter images;
-- zero-HIGH/CRITICAL scans, SPDX SBOMs, signatures, provenance, and exact-digest
-  pull verification;
-- local full-journey and zero-residue receipts;
-- independent destination-cluster certification.
+## Test-driven development
 
-Implementation must remain RED until it is rebased on the exact published 301
-source revision. This prevents a mutable development tree from becoming the 401
-foundation.
+The first 501 test suite was committed before implementation. It requires three distinct VMs, baseline/migration/disruption trials, SLO and capacity thresholds, CPU placement evidence, failure containment, correlation and state continuity, fail-closed decisions, persistent evidence, and human-only promotion review.
+
+## Evidence-driven development
+
+Every displayed metric is read from the current adapter response. Checked-in examples are `REHEARSAL`. `LIVE` requires fresh current-session evidence for OpenShift, KubeVirt, every VM, migration, disruption, CPU placement, inference execution, telemetry, correlation, and continuity. Missing any required kind downgrades the source state to `OFFLINE`; it never upgrades a claim by inference.

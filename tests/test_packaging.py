@@ -2,7 +2,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CHART = ROOT / "charts/virtualization-ai-401"
+CHART = ROOT / "charts/virtualization-ai-501"
 
 
 class PackagingTests(unittest.TestCase):

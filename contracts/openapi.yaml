@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Virtualization + AI 401 governed operations adapter
+  title: Virtualization + AI 501 governed operations adapter
   version: 1.0.0
 paths:
   /api/v1/operations:

@@ -1,5 +1,5 @@
 {
-  "policy_id": "virtualization-ai-401-day-two",
+  "policy_id": "virtualization-ai-501-day-two",
   "version": "0.1.0",
   "default_decision": "ABSTAIN",
   "rules": [

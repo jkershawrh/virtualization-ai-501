@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://demo-story.redhat-intel.com/virtualization-ai-401/operation-request.schema.json",
+  "$id": "https://demo-story.redhat-intel.com/virtualization-ai-501/operation-request.schema.json",
   "title": "Governed day-two operation request",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "request_id", "operation", "target", "requested_by", "evidence_snapshot", "preflight", "approval", "observed_result"],
   "properties": {
-    "schema_version": {"const": "demo-story.redhat-intel.com/virtualization-ai-401/operation-request/v1"},
+    "schema_version": {"const": "demo-story.redhat-intel.com/virtualization-ai-501/operation-request/v1"},
     "request_id": {"type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{7,127}$"},
     "operation": {"enum": ["LIVE_MIGRATE", "VALIDATE_RECOVERY", "RESTORE_REVIEW"]},
     "target": {

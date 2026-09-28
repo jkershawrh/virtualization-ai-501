@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://demo-story.redhat-intel.com/virtualization-ai-401/evidence-record.schema.json",
+  "$id": "https://demo-story.redhat-intel.com/virtualization-ai-501/evidence-record.schema.json",
   "title": "Durable governed operation evidence",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "evidence_id", "request_id", "state", "kind", "source", "source_state", "observed_at", "freshness", "digest", "payload"],
   "properties": {
-    "schema_version": {"const": "demo-story.redhat-intel.com/virtualization-ai-401/evidence/v1"},
+    "schema_version": {"const": "demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1"},
     "evidence_id": {"type": "string", "minLength": 8},
     "request_id": {"type": "string", "minLength": 8},
     "state": {"enum": ["OBSERVE", "PREFLIGHT", "PROPOSE", "APPROVE", "EXECUTE", "VALIDATE", "LEARN"]},

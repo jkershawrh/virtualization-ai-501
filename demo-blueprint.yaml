@@ -1,13 +1,13 @@
 schema_version: demo-story.redhat-intel.com/demo-blueprint/v1
 identity:
-  catalog_item_id: virtualization-ai-401
-  title: "Virtualization + AI 401 — Operate Hybrid VM and AI Workloads"
+  catalog_item_id: virtualization-ai-501
+  title: "Virtualization + AI 501 — Operate Hybrid VM and AI Workloads"
   track: virtualization_ai
   learning_level: "401"
   status: implementation_candidate
 sources:
   prerequisite:
-    repository: https://github.com/jkershawrh/virtualization-ai-401
+    repository: https://github.com/jkershawrh/virtualization-ai-501
     revision: 91e30a4af72bb4a15a4e5dfe2f29abb5692c698f
   supplemental:
     repository: https://github.com/jkershawrh/ocp-virt-roadshow-2026-showroom

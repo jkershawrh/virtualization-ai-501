@@ -4,7 +4,7 @@ Restart the operations adapter and retrieve the earlier request by identifier.
 The PVC-backed JSONL ledger must retain its ordered, digest-bearing records.
 Export only evidence; do not export credentials or unrelated metadata.
 
-Inventory resources labeled `lab.redhat.com/candidate=virtualization-ai-401`,
+Inventory resources labeled `lab.redhat.com/candidate=virtualization-ai-501`,
 uninstall the candidate release, and repeat the inventory. Acceptance requires
 zero residue for candidate Deployments, Pods, Services, Routes, NetworkPolicies,
 ServiceAccounts, VirtualMachines, ServiceMonitors, and the evidence PVC.

@@ -2,23 +2,23 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: adapter-default-deny
-  labels: {{- include "virtualization-ai-401.labels" . | nindent 4 }}
+  labels: {{- include "virtualization-ai-501.labels" . | nindent 4 }}
 spec:
-  podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-401-operations-adapter}}
+  podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-501-operations-adapter}}
   policyTypes: [Ingress, Egress]
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: allow-declared-adapter-path
-  labels: {{- include "virtualization-ai-401.labels" . | nindent 4 }}
+  labels: {{- include "virtualization-ai-501.labels" . | nindent 4 }}
 spec:
-  podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-401-operations-adapter}}
+  podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-501-operations-adapter}}
   policyTypes: [Ingress, Egress]
   ingress:
     - from:
         - podSelector: {matchLabels: {kubevirt.io: virt-launcher, vm.kubevirt.io/name: {{ .Values.vm.name }}}}
-        - podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-401-presentation}}
+        - podSelector: {matchLabels: {app.kubernetes.io/name: virtualization-ai-501-presentation}}
       ports: [{protocol: TCP, port: 8080}]
   egress:
     - to:

@@ -1,4 +1,4 @@
-# Virtualization + AI 401 — Operate Hybrid VM and AI Workloads
+# Virtualization + AI 501 — Operate Hybrid VM and AI Workloads
 
 This repository is the factory workspace for the 401-level Red Hat + Intel
 Virtualization and AI catalog item. It teaches an operator to preserve service,

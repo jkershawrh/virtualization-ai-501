@@ -18,10 +18,10 @@ const technicalTopology = {
 }
 
 export const demoConfig: DemoConfig = {
-  id: 'virtualization-ai-401',
+  id: 'virtualization-ai-501',
   title: 'Operate Hybrid VM and AI Workloads',
   subtitle: 'A governed day-two path for migration, recovery, dependency failure, and durable evidence',
-  event: 'Virtualization + AI 401',
+  event: 'Virtualization + AI 501',
   audience: 'Virtualization administrators, platform operators, and AI platform owners',
   cta: 'Decide whether the operation and its service outcome are safe to review.',
   brand: { primary: { name: 'Red Hat', logo: '/logos/redhat.svg', alt: 'Red Hat' }, partner: { name: 'Intel', logo: '/logos/intel.png', alt: 'Intel' }, attribution: 'Red Hat × Intel' },

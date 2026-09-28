@@ -12,9 +12,9 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-REQUEST_VERSION = "demo-story.redhat-intel.com/virtualization-ai-401/operation-request/v1"
-RESPONSE_VERSION = "demo-story.redhat-intel.com/virtualization-ai-401/operation-response/v1"
-EVIDENCE_VERSION = "demo-story.redhat-intel.com/virtualization-ai-401/evidence/v1"
+REQUEST_VERSION = "demo-story.redhat-intel.com/virtualization-ai-501/operation-request/v1"
+RESPONSE_VERSION = "demo-story.redhat-intel.com/virtualization-ai-501/operation-response/v1"
+EVIDENCE_VERSION = "demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1"
 POLICY = json.loads((Path(__file__).parents[1] / "contracts/governance-policy.json").read_text())
 REQUEST_FIELDS = {"schema_version", "request_id", "operation", "target", "requested_by", "evidence_snapshot", "preflight", "approval", "observed_result"}
 FORBIDDEN_KEYS = {"api_key", "apikey", "password", "secret", "token", "authorization", "bearer"}
@@ -84,7 +84,7 @@ def validate_request(payload: object) -> dict:
 
 
 def ledger_path() -> Path:
-    return Path(os.getenv("LEDGER_PATH", "/tmp/virtualization-ai-401-evidence.jsonl"))
+    return Path(os.getenv("LEDGER_PATH", "/tmp/virtualization-ai-501-evidence.jsonl"))
 
 
 def load_ledger(path: Path | None = None) -> list[dict]:
@@ -244,7 +244,7 @@ def metrics_text() -> str:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "virtualization-ai-401/1"
+    server_version = "virtualization-ai-501/1"
 
     def send_json(self, status: int, value: object) -> None:
         encoded = json.dumps(value, separators=(",", ":")).encode()
