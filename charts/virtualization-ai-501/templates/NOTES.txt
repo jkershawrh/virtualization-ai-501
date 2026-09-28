@@ -1,0 +1,2 @@
+This is a development candidate. REHEARSAL is the default. LIVE requires current-session cluster, KubeVirt, workload, operation, and application evidence plus independent Launchpad review.
+The operations adapter records external results and has no infrastructure mutation authority. Model/provider/placement/resource claims require direct target evidence.

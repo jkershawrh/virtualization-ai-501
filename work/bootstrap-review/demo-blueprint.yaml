@@ -1,0 +1,173 @@
+version: 1
+status: draft
+source:
+  name: "virtualization-ai-401"
+  kind: repository
+  location: "/Users/jkershaw/Documents/virtualization-ai-401"
+  revision: "0672f30"
+  discovered_at: "2026-09-28T23:49:41.979Z"
+  inspected_artifacts:
+    - ".github/workflows/release-images.yml"
+    - "Containerfile"
+    - "README.md"
+    - "charts/virtualization-ai-401/Chart.yaml"
+    - "charts/virtualization-ai-401/files/vm_client.py"
+    - "charts/virtualization-ai-401/templates/adapter.yaml"
+    - "charts/virtualization-ai-401/templates/networkpolicy.yaml"
+    - "charts/virtualization-ai-401/templates/persistentvolumeclaim.yaml"
+    - "charts/virtualization-ai-401/templates/presentation.yaml"
+    - "charts/virtualization-ai-401/templates/serviceaccount.yaml"
+    - "charts/virtualization-ai-401/templates/servicemonitor.yaml"
+    - "charts/virtualization-ai-401/templates/vm.yaml"
+    - "charts/virtualization-ai-401/values.published.yaml"
+    - "charts/virtualization-ai-401/values.yaml"
+    - "contracts/evidence-record.schema.json"
+    - "contracts/examples/application-failure-request.json"
+    - "contracts/examples/application-failure-response.json"
+    - "contracts/examples/approved-evidence.json"
+    - "contracts/examples/approved-migration-request.json"
+    - "contracts/examples/approved-migration-response.json"
+    - "contracts/examples/dependency-outage-request.json"
+    - "contracts/examples/dependency-outage-response.json"
+    - "contracts/governance-policy.json"
+    - "contracts/openapi.yaml"
+    - "contracts/operation-request.schema.json"
+    - "contracts/operation-response.schema.json"
+    - "demo-blueprint.yaml"
+    - "discovery-review.md"
+    - "docs/cdd-red-run.md"
+    - "docs/discovery-ledger.md"
+    - "docs/evidence-driven-development.md"
+    - "docs/journey-acceptance-matrix.md"
+    - "handoff/catalog-certification.proposed.yaml"
+    - "handoff/catalog-onboarding.proposed.yaml"
+    - "handoff/evidence/factory-development-journey.json"
+    - "handoff/evidence/factory-zero-residue.json"
+    - "handoff/evidence/immutable-release.json"
+    - "handoff/launchpad-handoff.yaml"
+    - "package-lock.json"
+    - "package.json"
+    - "playwright.config.ts"
+    - "public/fixtures/application-failure.json"
+    - "public/fixtures/dependency-outage.json"
+    - "public/fixtures/healthy-migration.json"
+    - "showroom/content/antora.yml"
+    - "showroom/content/modules/ROOT/nav.adoc"
+    - "showroom/content/modules/ROOT/pages/01-observe.adoc"
+    - "showroom/content/modules/ROOT/pages/02-preflight.adoc"
+    - "showroom/content/modules/ROOT/pages/03-propose.adoc"
+    - "showroom/content/modules/ROOT/pages/04-approve.adoc"
+    - "showroom/content/modules/ROOT/pages/05-execute.adoc"
+    - "showroom/content/modules/ROOT/pages/06-validate.adoc"
+    - "showroom/content/modules/ROOT/pages/07-learn-reclaim.adoc"
+    - "showroom/content/modules/ROOT/pages/99-conclusion.adoc"
+    - "showroom/content/modules/ROOT/pages/index.adoc"
+    - "showroom/default-site.yml"
+    - "src/App.test.tsx"
+    - "src/App.tsx"
+    - "src/components/BrandLockup.tsx"
+    - "src/components/DemoHeader.tsx"
+    - "src/components/Finale.tsx"
+    - "src/components/Opening.tsx"
+    - "src/config/validate.test.ts"
+    - "src/config/validate.ts"
+    - "src/demo.config.ts"
+    - "src/live/adapters.ts"
+    - "src/live/demoAdapter.ts"
+    - "src/live/proof.test.ts"
+    - "src/live/proof.ts"
+    - "src/live/useLiveProof.ts"
+    - "src/main.tsx"
+    - "src/scenes/LiveJourney.tsx"
+    - "src/scenes/LiveProof.tsx"
+    - "src/scenes/SceneFrame.tsx"
+    - "src/scenes/SceneRenderer.test.tsx"
+    - "src/scenes/SceneRenderer.tsx"
+    - "src/scenes/TechnicalTopology.tsx"
+    - "src/test/setup.ts"
+    - "src/types.ts"
+    - "src/vite-env.d.ts"
+    - "story.brief.yaml"
+    - "test-results/.last-run.json"
+    - "tests/test_contracts.py"
+    - "tests/test_factory.py"
+    - "tests/test_packaging.py"
+    - "tests/test_release_workflow.py"
+    - "tests/test_showroom.py"
+    - "tests/test_workload.py"
+    - "tsconfig.app.json"
+    - "tsconfig.json"
+    - "tsconfig.node.json"
+    - "visual-tests/presentation.spec.ts"
+    - "vite.config.ts"
+    - "workload/Containerfile"
+    - "workload/__init__.py"
+    - "workload/app.py"
+    - "workload/vm_client.py"
+  discrepancies: []
+intent:
+  primary_user: unknown
+  workload: unknown
+  recognized_problem: unknown
+  audience_decision: unknown
+  desired_outcome: unknown
+architecture:
+  actors: []
+  runtime_objects:
+    - id: route
+      name: "route"
+      kind: route
+      responsibility: unknown
+      status: discovered
+      source: "charts/virtualization-ai-401/templates/networkpolicy.yaml"
+    - id: service
+      name: "service"
+      kind: service
+      responsibility: unknown
+      status: discovered
+      source: "charts/virtualization-ai-401/templates/adapter.yaml"
+    - id: deployment
+      name: "deployment"
+      kind: deployment
+      responsibility: unknown
+      status: discovered
+      source: "charts/virtualization-ai-401/templates/adapter.yaml"
+    - id: model-endpoint
+      name: "model endpoint"
+      kind: model-endpoint
+      responsibility: unknown
+      status: discovered
+      source: "discovery-review.md"
+  boundaries: []
+  external_dependencies: []
+  flows: []
+operational_pattern:
+  name: unknown
+  rationale: Must be derived from domain workflows, contracts, and tests.
+  steps: []
+  changed_condition: null
+  close: null
+evidence: []
+decisions: []
+ai_assessment:
+  needed: unknown
+  kind: generative-llm
+  rationale: "AI signals were discovered; runtime necessity and authority require verification."
+  tasks: []
+  inputs: []
+  outputs: []
+  model_identity_source: "discovery-review.md"
+  hardware_identity_source: null
+  evidence_access: []
+  action_authority: unknown
+  validation: []
+  fallback: unknown
+  final_decision_owner: unknown
+story_mapping:
+  audience_question: unknown
+  stakes: []
+  architecture_flow_ids: []
+  live_proof_flow_ids: []
+  comparison: null
+  payoff: unknown
+  next_journey: unknown

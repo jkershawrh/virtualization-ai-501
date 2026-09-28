@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: Virtualization + AI 401 governed operations adapter
+  version: 1.0.0
+paths:
+  /api/v1/operations:
+    post:
+      summary: Evaluate and record one bounded day-two operation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: ./operation-request.schema.json}
+      responses:
+        "200": {description: Deterministic governed result}
+        "400": {description: Contract refused}
+  /api/v1/operations/{request_id}:
+    get:
+      summary: Read durable evidence for one request
+      parameters: [{in: path, name: request_id, required: true, schema: {type: string}}]
+      responses:
+        "200": {description: Evidence records}
+        "404": {description: Request not found}
+  /metrics:
+    get: {summary: Read decision and ledger record counts, responses: {"200": {description: Prometheus text}}}
+  /healthz:
+    get: {summary: Read adapter mode and ledger status, responses: {"200": {description: Health state}}}

@@ -1,0 +1,24 @@
+operationsAdapter:
+  replicas: 1
+  mode: rehearsal
+  image: {repository: localhost/virtualization-ai-401-operations-adapter, tag: 0.1.0, digest: "", pullPolicy: IfNotPresent}
+  placement: {nodeSelector: {kubernetes.io/arch: amd64}}
+  ledger: {storageClassName: "", size: 256Mi}
+  model: {secretName: "", endpointKey: endpoint, modelKey: model, providerKey: provider, apiKeyKey: api-key, egressCIDR: ""}
+  resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {cpu: 500m, memory: 256Mi}}
+presentation:
+  enabled: true
+  image: {repository: localhost/virtualization-ai-401-presentation, tag: 0.1.0, digest: "", pullPolicy: IfNotPresent}
+  resources: {requests: {cpu: 25m, memory: 32Mi}, limits: {cpu: 100m, memory: 96Mi}}
+vm:
+  enabled: true
+  name: operations-client
+  runStrategy: RerunOnFailure
+  sshAuthorizedKey: ""
+  placement:
+    nodeSelector: {kubernetes.io/arch: amd64}
+    requiredLabels: {}
+  containerDisk: {repository: quay.io/containerdisks/fedora, tag: "41", digest: sha256:ae48475e213bd3d34415e8f123f5a79166b1eb142fdf851654e3adb9d02fb73f}
+  resources: {requests: {cpu: 500m, memory: 512Mi}, limits: {cpu: "1", memory: 1Gi}}
+monitoring:
+  serviceMonitor: {enabled: false, interval: 30s}
