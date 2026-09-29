@@ -1,75 +1,75 @@
 import type { DemoConfig } from './types'
 
 const technicalTopology = {
-  boundary: { label: 'Governed operations boundary', detail: 'namespaced candidate; no cluster mutation authority' },
-  entry: { id: 'operator', kind: 'authority', label: 'Human operator', detail: 'requests and explicitly approves an operation' },
+  boundary: { label: 'Namespaced qualification boundary', detail: 'read-only evidence evaluation; no cluster mutation or promotion authority' },
+  entry: { id: 'human', kind: 'authority', label: 'Human reviewer', detail: 'sets the envelope and owns promotion' },
   primaryPath: [
-    { id: 'observe', kind: 'evidence', label: 'Observed state', detail: 'current identity, compatibility, and health', edgeLabel: 'snapshot' },
-    { id: 'policy', kind: 'policy', label: 'Deterministic policy', detail: 'ALLOW_REVIEW · REFUSE · ABSTAIN', edgeLabel: 'evaluate' },
-    { id: 'adapter', kind: 'deployment', label: 'Operations adapter', detail: 'records evidence; never remediates', endpoint: 'POST /api/v1/operations', edgeLabel: 'record' },
+    { id: 'fleet', kind: 'kubevirt', label: 'VM inference fleet', detail: 'distinct VirtualMachine and VMI identities', edgeLabel: 'generate load' },
+    { id: 'inference', kind: 'service', label: 'Inference service', detail: 'execution identity and returned request evidence', edgeLabel: 'infer' },
+    { id: 'telemetry', kind: 'evidence', label: 'Correlated telemetry', detail: 'request, VM, migration, disruption, CPU, and continuity', edgeLabel: 'correlate' },
+    { id: 'policy', kind: 'policy', label: 'Deterministic policy', detail: 'ALLOW_REVIEW · REFUSE · ABSTAIN', endpoint: 'POST /api/v1/qualifications', edgeLabel: 'qualify' },
   ],
   supportPath: [
-    { id: 'approval', kind: 'authority', label: 'Approval gate', detail: 'human · digest · expiry', edgeLabel: 'authorize review' },
-    { id: 'operation', kind: 'external', label: 'External operation', detail: 'migration or recovery remains outside adapter authority', edgeLabel: 'observed result' },
-    { id: 'application', kind: 'service', label: 'Application + AI path', detail: 'validated separately from infrastructure', edgeLabel: 'health' },
-    { id: 'ledger', kind: 'data', label: 'Durable evidence ledger', detail: 'seven ordered, digest-bearing records', edgeLabel: 'learn' },
+    { id: 'migration', kind: 'event', label: 'Migration trial', detail: 'externally executed and directly observed', edgeLabel: 'change placement' },
+    { id: 'disruption', kind: 'event', label: 'Disruption trial', detail: 'bounded failure with containment evidence', edgeLabel: 'stress boundary' },
+    { id: 'ledger', kind: 'data', label: 'Durable ledger', detail: 'digest-bearing qualification journey', edgeLabel: 'preserve' },
   ],
-  optionalPath: { id: 'model', kind: 'external', label: 'Optional explainer', detail: 'describes a result; cannot decide or act', edgeLabel: 'LIVE identity required' },
+  optionalPath: { id: 'launchpad', kind: 'external', label: 'Launchpad', detail: 'independent certification and promotion remain outside the factory', edgeLabel: 'proposed handoff' },
 }
 
 export const demoConfig: DemoConfig = {
   id: 'virtualization-ai-501',
-  title: 'Operate Hybrid VM and AI Workloads',
-  subtitle: 'A governed day-two path for migration, recovery, dependency failure, and durable evidence',
+  title: 'Qualify a Governed VM Inference Fleet',
+  subtitle: 'Migration, disruption, placement, capacity, and continuity become one reviewable evidence case',
   event: 'Virtualization + AI 501',
-  audience: 'Virtualization administrators, platform operators, and AI platform owners',
-  cta: 'Decide whether the operation and its service outcome are safe to review.',
+  audience: 'Virtualization, AI platform, performance, and lab operations teams',
+  cta: 'Decide whether the candidate has earned human promotion review.',
   brand: { primary: { name: 'Red Hat', logo: '/logos/redhat.svg', alt: 'Red Hat' }, partner: { name: 'Intel', logo: '/logos/intel.png', alt: 'Intel' }, attribution: 'Red Hat × Intel' },
   acts: [
-    { id: 'observe', label: '01', title: 'OBSERVE', scenes: [
-      { id: 'observe', type: 'intro', beat: 'ordinary-world', eyebrow: 'OBSERVE', title: 'Infrastructure health is not service health', subtitle: 'A planned migration can complete while the application or its AI dependency still fails.', speakerPrompt: 'State REHEARSAL. Do not infer model, provider, Intel placement, or resource use.' },
+    { id: 'discover', label: '01', title: 'DISCOVER', scenes: [
+      { id: 'discover', type: 'intro', beat: 'ordinary-world', eyebrow: 'DISCOVER · REHEARSAL', title: 'One healthy VM does not qualify a fleet', subtitle: 'Scale introduces placement, concurrency, migration, disruption, continuity, and containment dependencies.', speakerPrompt: 'State REHEARSAL. LIVE requires directly observed OpenShift, KubeVirt, VM, inference, CPU placement, migration, disruption, telemetry, and continuity evidence.' },
     ] },
-    { id: 'preflight', label: '02', title: 'PREFLIGHT', scenes: [
-      { id: 'preflight', type: 'guided-architecture', beat: 'system-reveal', eyebrow: 'PREFLIGHT', title: 'Qualify the operation before proposing it', body: 'Each answer is observed evidence, never an assumption.', layers: [
-        { id: 'identity', component: 'Identity', tone: 'primary', question: 'Is this the declared VM?', answer: 'Namespace and VM identity must match.', detail: 'A known mismatch produces REFUSE.', activeNodeIds: ['operator', 'observe', 'policy'] },
-        { id: 'compatibility', component: 'Compatibility', tone: 'primary', question: 'Can network and storage move safely?', answer: 'Both compatibility checks must pass.', detail: 'A known incompatibility produces REFUSE.', activeNodeIds: ['observe', 'policy'] },
-        { id: 'currency', component: 'Evidence', tone: 'success', question: 'Are facts fresh and correlated?', answer: 'Freshness and correlation must be explicit.', detail: 'Missing facts produce ABSTAIN.', activeNodeIds: ['observe', 'ledger'] },
-        { id: 'authority', component: 'Authority', tone: 'partner', question: 'Who can approve execution?', answer: 'Only the named human with a matching, unexpired digest.', detail: 'The policy and optional model have no execution authority.', activeNodeIds: ['approval', 'model'] },
-      ], technicalTopology, speakerPrompt: 'Reveal refusal before abstention, then the human approval boundary.' },
+    { id: 'baseline', label: '02', title: 'BASELINE', scenes: [
+      { id: 'baseline', type: 'guided-architecture', beat: 'system-reveal', eyebrow: 'BASELINE', title: 'Every claim needs an owner and an evidence path', body: 'Reveal the causal boundary before showing a result.', layers: [
+        { id: 'fleet-q', component: 'Fleet identity', tone: 'primary', question: 'What exactly is under qualification?', answer: 'Distinct VM, VMI, namespace, service, and node identities.', detail: 'Unknown or duplicate identity blocks the run.', activeNodeIds: ['human', 'fleet'] },
+        { id: 'cpu-q', component: 'Placement', tone: 'partner', question: 'Where did each workload execute?', answer: 'Node, architecture, and CPU vendor are direct evidence.', detail: 'Intel Xeon is never inferred from an image or label alone.', activeNodeIds: ['fleet', 'telemetry'] },
+        { id: 'scale-q', component: 'Envelope', tone: 'success', question: 'What counts as enough capacity?', answer: 'The reviewer declares SLO, concurrency, and CPU boundaries first.', detail: 'Observed measurements are evaluated; presentation copy supplies none.', activeNodeIds: ['human', 'inference', 'policy'] },
+        { id: 'authority-q', component: 'Authority', tone: 'partner', question: 'Who may promote the result?', answer: 'Only a human after independent Launchpad gates.', detail: 'The adapter, model, and factory cannot certify or promote.', activeNodeIds: ['policy', 'ledger', 'launchpad'] },
+      ], technicalTopology, speakerPrompt: 'Keep evidence collection, deterministic policy, and promotion authority visibly separate.' },
     ] },
-    { id: 'propose', label: '03', title: 'PROPOSE', scenes: [
-      { id: 'propose', type: 'reframe', beat: 'reframe', eyebrow: 'PROPOSE', title: 'A passing preflight is a proposal, not permission', before: 'The checks passed', after: 'ALLOW_REVIEW · HUMAN_APPROVAL_REQUIRED', detail: 'The operation digest freezes exactly what the reviewer is asked to approve.', speakerPrompt: 'Separate policy eligibility from human authorization.' },
+    { id: 'migrate', label: '03', title: 'MIGRATE', scenes: [
+      { id: 'migrate', type: 'reframe', beat: 'stakes', eyebrow: 'MIGRATE', title: 'A migration event is not a qualification result', before: 'The VMI moved', after: 'Placement + inference + state + correlation remained continuous', detail: 'The changed condition must survive the same declared envelope.', speakerPrompt: 'Migration is externally executed; this adapter only evaluates supplied evidence.' },
     ] },
-    { id: 'approve', label: '04', title: 'APPROVE', scenes: [
-      { id: 'approve', type: 'trust-boundary', beat: 'stakes', eyebrow: 'APPROVE', title: 'Authority stays with the operator', zones: [
-        { id: 'human', label: 'Human authority', boundary: 'may approve the exact operation digest', items: ['named reviewer', 'expiry', 'accept or reject'], tone: 'primary' },
-        { id: 'adapter', label: 'Adapter authority', boundary: 'may evaluate and record only', items: ['deterministic policy', 'durable evidence', 'no remediation'], tone: 'success' },
-        { id: 'model', label: 'Model authority', boundary: 'NONE', items: ['optional explanation', 'no decision override', 'no infrastructure action'], tone: 'partner' },
-      ], speakerPrompt: 'A digest mismatch or expiry is REFUSE. No silent renewal exists.' },
-    ] },
-    { id: 'execute', label: '05', title: 'EXECUTE', scenes: [
-      { id: 'execute', type: 'live-journey', beat: 'live-proof', eyebrow: 'EXECUTE · REHEARSAL', title: 'Run three conditions through one contract', body: 'The adapter records an external operation result; it does not perform the migration or recovery.', cta: 'Run governed operation conditions', nodes: [
-        { id: 'request', label: 'Approved request', detail: 'digest + expiry', tone: 'primary' },
-        { id: 'operation', label: 'Observed operation', detail: 'external execution', tone: 'primary' },
-        { id: 'infrastructure', label: 'Infrastructure result', detail: 'complete or failed', tone: 'success' },
-        { id: 'service', label: 'Application + AI path', detail: 'independent health', tone: 'partner' },
-        { id: 'ledger', label: 'Evidence ledger', detail: 'seven states', tone: 'success' },
+    { id: 'disrupt', label: '04', title: 'DISRUPT', scenes: [
+      { id: 'disrupt', type: 'live-journey', beat: 'live-proof', eyebrow: 'DISRUPT · REHEARSAL', title: 'Run three fleet outcomes through one contract', body: 'The evidence case accumulates instead of replacing earlier results.', cta: 'Run qualification conditions', nodes: [
+        { id: 'fleet', label: 'Fleet baseline', detail: 'identity + placement', tone: 'primary' },
+        { id: 'migration', label: 'Migration', detail: 'service continuity', tone: 'primary' },
+        { id: 'disruption', label: 'Disruption', detail: 'failure containment', tone: 'partner' },
+        { id: 'telemetry', label: 'Correlation', detail: 'one evidence graph', tone: 'success' },
+        { id: 'policy', label: 'Qualification', detail: 'human review only', tone: 'success' },
       ], technicalTopology, steps: [
-        { id: 'healthy', title: 'Planned migration validates', detail: 'Infrastructure, application, AI dependency, and correlation all pass.', adapterId: 'operation-healthy', activeNode: 4, activeNodeIds: ['operator', 'approval', 'operation', 'application', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
-        { id: 'dependency', title: 'AI dependency is unavailable', detail: 'Infrastructure and application pass; the AI path is degraded, so the result ABSTAINs.', adapterId: 'operation-dependency', activeNode: 4, activeNodeIds: ['operation', 'application', 'model', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
-        { id: 'application', title: 'Infrastructure succeeds, application fails', detail: 'A completed platform operation cannot mask a failed service outcome.', adapterId: 'operation-application', activeNode: 4, activeNodeIds: ['operation', 'application', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
-      ], speakerPrompt: 'Call out the split result: infrastructure PASS, application FAIL, overall REFUSE.' },
+        { id: 'qualified', title: 'Envelope satisfied', detail: 'All three trials preserve containment, correlation, and state continuity.', adapterId: 'qualification-pass', activeNode: 4, activeNodeIds: ['fleet', 'inference', 'migration', 'disruption', 'telemetry', 'policy', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
+        { id: 'capacity', title: 'Capacity boundary crossed', detail: 'The observed trial breaches the declared envelope and is refused.', adapterId: 'qualification-capacity', activeNode: 4, activeNodeIds: ['fleet', 'inference', 'telemetry', 'policy', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
+        { id: 'correlation', title: 'Evidence chain breaks', detail: 'Missing correlation prevents a trustworthy fleet conclusion.', adapterId: 'qualification-correlation', activeNode: 4, activeNodeIds: ['migration', 'disruption', 'telemetry', 'policy', 'ledger'], resultFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }] },
+      ], speakerPrompt: 'Explain why REFUSE and ABSTAIN are distinct operational outcomes.' },
     ] },
-    { id: 'validate', label: '06', title: 'VALIDATE', scenes: [
-      { id: 'validate', type: 'comparison', beat: 'trials', eyebrow: 'VALIDATE', title: 'Validate the service, not just the operation', columns: [
-        { label: 'Healthy migration', value: 'ALLOW_REVIEW', detail: 'Infrastructure PASS · application PASS · AI path PASS', tone: 'success' },
-        { label: 'Dependency outage', value: 'ABSTAIN', detail: 'Infrastructure PASS · application PASS · AI path FAIL', tone: 'partner' },
-        { label: 'Split failure', value: 'REFUSE', detail: 'Infrastructure PASS · application FAIL', tone: 'danger' },
-      ], speakerPrompt: 'No model explanation is fabricated when the dependency is unavailable.' },
+    { id: 'correlate', label: '05', title: 'CORRELATE', scenes: [
+      { id: 'correlate', type: 'mechanisms', beat: 'root-cause', eyebrow: 'CORRELATE', title: 'Continuity is a chain, not a green dashboard', mechanisms: [
+        { id: 'identity', label: 'Identity', claim: 'VM → node → CPU → request', detail: 'The workload and placement records bind to the same request.', tone: 'primary' },
+        { id: 'state', label: 'State', claim: 'before → change → after', detail: 'Migration and restart preserve an inspectable ledger.', tone: 'success' },
+        { id: 'containment', label: 'Containment', claim: 'failure stays bounded', detail: 'A disruption cannot leak across the declared fleet boundary.', tone: 'partner' },
+      ], speakerPrompt: 'No metric is trusted unless its identity and correlation path survive the changed condition.' },
     ] },
-    { id: 'learn', label: '07', title: 'LEARN', scenes: [
-      { id: 'learn', type: 'evidence-payoff', beat: 'transformation', eyebrow: 'LEARN', title: 'The durable record preserves what happened—and what did not', adapterIds: ['operation-healthy', 'operation-dependency', 'operation-application'], fallbackLine: 'Run the three REHEARSAL conditions to populate the evidence payoff', evidenceFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }], line1: 'OBSERVE → PREFLIGHT → PROPOSE → APPROVE → EXECUTE → VALIDATE → LEARN remains correlated.', line2: 'Launchpad still owns target execution, measurement, cleanup verification, certification, and promotion.', cta: 'Continue in the separate 90–120 minute Showroom lab →', speakerPrompt: 'Close on bounded proof and the noncertifying handoff.' },
+    { id: 'qualify', label: '06', title: 'QUALIFY', scenes: [
+      { id: 'qualify', type: 'comparison', beat: 'trials', eyebrow: 'QUALIFY', title: 'Policy turns evidence into a bounded recommendation', columns: [
+        { label: 'Complete + inside envelope', value: 'ALLOW_REVIEW', detail: 'Eligible for human promotion review only', tone: 'success' },
+        { label: 'Known boundary breach', value: 'REFUSE', detail: 'SLO, capacity, or containment failed', tone: 'danger' },
+        { label: 'Evidence incomplete', value: 'ABSTAIN', detail: 'Correlation or state continuity is missing', tone: 'partner' },
+      ], speakerPrompt: 'No recommendation changes Launchpad catalog or runtime state.' },
+    ] },
+    { id: 'handoff', label: '07', title: 'HANDOFF', scenes: [
+      { id: 'handoff', type: 'evidence-payoff', beat: 'transformation', eyebrow: 'HANDOFF', title: 'A candidate is immutable before it becomes certifiable', adapterIds: ['qualification-pass', 'qualification-capacity', 'qualification-correlation'], fallbackLine: 'Run all three REHEARSAL conditions to populate the evidence payoff', evidenceFields: [{ key: 'decision', label: 'Decision' }, { key: 'reason', label: 'Reason' }, { key: 'source_state', label: 'Source' }], line1: 'DISCOVER → BASELINE → MIGRATE → DISRUPT → CORRELATE → QUALIFY → HANDOFF remains durable.', line2: 'Launchpad still owns trusted rendering, live seats, capacity graduation, certification, and promotion.', cta: 'Continue in the separate 75–90 minute Showroom lab →', speakerPrompt: 'Close presentation. Offer one deliberate lab handoff; do not imply orderability.' },
     ] },
   ],
-  journeyHandoffs: [{ depth: 'lab', title: 'Operate Hybrid VM and AI Workloads lab', duration: '90–120 minutes', question: 'Can the learner qualify, approve, validate, and reclaim a governed day-two operation?', technology: 'OpenShift Virtualization · deterministic policy · durable evidence · optional AI explanation', instruction: 'Use the separate Showroom lab; begin in REHEARSAL and stop before certification.' }],
+  journeyHandoffs: [{ depth: 'lab', title: 'Qualify a VM inference fleet lab', duration: '75–90 minutes', question: 'Can the learner build, stress, qualify, restart, and reclaim the evidence case?', technology: 'OpenShift Virtualization · Linux/AMD64 · correlated telemetry · deterministic policy', instruction: 'Use the separate Showroom lab and stop at the factory-candidate handoff.' }],
 }

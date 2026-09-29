@@ -1,0 +1,5 @@
+= 3. MIGRATE — 12 minutes
+
+Compare the baseline with the externally observed migration trial. Verify destination placement, inference execution, request correlation, state continuity, and the absence of a containment breach.
+
+The qualification adapter never initiates a migration. A completed migration without correlated service evidence is `ABSTAIN`.

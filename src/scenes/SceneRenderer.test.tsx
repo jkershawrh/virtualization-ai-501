@@ -16,7 +16,7 @@ describe('SceneRenderer', () => {
   }
 
   it('labels rehearsal data instead of presenting it as live', async () => {
-    const scene: SceneConfig = { id: 'fallback', type: 'live-proof', beat: 'live-proof', title: 'Proof', adapterId: 'operation-healthy', cta: 'Run live proof', resultFields: [{ key: 'decision', label: 'Decision' }] }
+    const scene: SceneConfig = { id: 'fallback', type: 'live-proof', beat: 'live-proof', title: 'Proof', adapterId: 'qualification-pass', cta: 'Run live proof', resultFields: [{ key: 'decision', label: 'Decision' }] }
     render(<SceneRenderer scene={scene} brand={demoConfig.brand} />)
     fireEvent.click(screen.getByRole('button', { name: /run live proof/i }))
     expect(await screen.findByText('rehearsal')).toBeInTheDocument()
@@ -29,11 +29,11 @@ describe('SceneRenderer', () => {
     expect(screen.queryByLabelText('Live technical deployment topology')).not.toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Inspect technical topology' }))
     expect(screen.getByLabelText('Live technical deployment topology')).toBeInTheDocument()
-    expect(screen.getByText('Governed operations boundary')).toBeInTheDocument()
-    expect(screen.getByText('POST /api/v1/operations')).toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: /run governed operation conditions/i }))
-    expect((await screen.findAllByText('Planned migration validates'))[0]).toBeInTheDocument()
-    expect(await screen.findByRole('button', { name: /next governed condition/i })).toBeInTheDocument()
+    expect(screen.getByText('Namespaced qualification boundary')).toBeInTheDocument()
+    expect(screen.getByText('POST /api/v1/qualifications')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: /run qualification conditions/i }))
+    expect((await screen.findAllByText('Envelope satisfied'))[0]).toBeInTheDocument()
+    expect(await screen.findByRole('button', { name: /next qualification condition/i })).toBeInTheDocument()
   })
 
   it('renders the statistic-grid scene', () => {
@@ -63,13 +63,13 @@ describe('SceneRenderer', () => {
   it('guides architecture as audience questions and revealed answers', async () => {
     const scene = scenes.find((item) => item.type === 'guided-architecture')!
     render(<SceneRenderer scene={scene} brand={demoConfig.brand} />)
-    expect(screen.getByText('Is this the declared VM?')).toBeInTheDocument()
-    expect(screen.queryByText('Namespace and VM identity must match.')).not.toBeInTheDocument()
+    expect(screen.getByText('What exactly is under qualification?')).toBeInTheDocument()
+    expect(screen.queryByText('Distinct VM, VMI, namespace, service, and node identities.')).not.toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Reveal technical boundary' }))
-    expect(await screen.findByText('Namespace and VM identity must match.')).toBeInTheDocument()
-    expect(document.querySelector('[data-node="observe"]')).toHaveClass('active')
+    expect(await screen.findByText('Distinct VM, VMI, namespace, service, and node identities.')).toBeInTheDocument()
+    expect(document.querySelector('[data-node="fleet"]')).toHaveClass('active')
     fireEvent.click(screen.getByRole('button', { name: 'Ask next question →' }))
-    expect(await screen.findByText('Can network and storage move safely?')).toBeInTheDocument()
+    expect(await screen.findByText('Where did each workload execute?')).toBeInTheDocument()
   })
 
   it('keeps the presenter pitch at seven scenes or fewer', () => {
@@ -88,7 +88,7 @@ describe('SceneRenderer', () => {
     const configured = scenes.find((item) => item.type === 'evidence-payoff')!
     const scene = { ...configured, adapterIds: ['proof-that-has-not-run'] }
     render(<SceneRenderer scene={scene} brand={demoConfig.brand} />)
-    expect(screen.getByText('Run the three REHEARSAL conditions to populate the evidence payoff')).toBeInTheDocument()
+    expect(screen.getByText('Run all three REHEARSAL conditions to populate the evidence payoff')).toBeInTheDocument()
     expect(screen.getByText('not run')).toBeInTheDocument()
   })
 

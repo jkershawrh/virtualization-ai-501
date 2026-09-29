@@ -1,0 +1,5 @@
+= 5. CORRELATE — 10 minutes
+
+Follow the shared request identifier across VM identity, CPU placement, inference response, migration/disruption event, and telemetry. Break one correlation field and confirm `ABSTAIN`.
+
+Restart the adapter, reload the PVC-backed JSONL ledger, and prove that state and evidence continuity survive restart.

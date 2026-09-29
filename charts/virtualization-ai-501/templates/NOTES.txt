@@ -1,2 +1,3 @@
-This is a development candidate. REHEARSAL is the default. LIVE requires current-session cluster, KubeVirt, workload, operation, and application evidence plus independent Launchpad review.
-The operations adapter records external results and has no infrastructure mutation authority. Model/provider/placement/resource claims require direct target evidence.
+This is a non-orderable factory candidate. REHEARSAL is the default.
+LIVE requires current-session OpenShift, KubeVirt, every VM, migration, disruption, CPU placement, inference, telemetry, and continuity evidence.
+The qualification adapter evaluates and records supplied evidence only. It cannot mutate infrastructure, certify, or promote.

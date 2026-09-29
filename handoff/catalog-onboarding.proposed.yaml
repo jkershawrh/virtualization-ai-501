@@ -1,5 +1,9 @@
+api_version: launchpad.redhat.com/v1alpha1
 status: PROPOSED_NOT_ORDERABLE
-title: Virtualization + AI 501 — Operate Hybrid VM and AI Workloads
+catalog_item_id: virtualization-ai-501
+title: Virtualization + AI 501 — Qualify a Governed VM Inference Fleet
+prerequisite: virtualization-ai-401@0672f307bf48eae2803958e290997d8c046b5c42
 orderable: false
 max_seats: 0
-reason: Launchpad validation, certification, and promotion remain incomplete.
+promotion_eligible: false
+reason: Live destination, capacity, reclaim, certification, and human promotion gates remain Launchpad-owned and incomplete.

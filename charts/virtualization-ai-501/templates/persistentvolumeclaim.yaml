@@ -5,9 +5,9 @@ metadata:
   labels: {{- include "virtualization-ai-501.labels" . | nindent 4 }}
 spec:
   accessModes: [ReadWriteOnce]
-  {{- if .Values.operationsAdapter.ledger.storageClassName }}
-  storageClassName: {{ .Values.operationsAdapter.ledger.storageClassName | quote }}
+  {{- if .Values.qualificationAdapter.ledger.storageClassName }}
+  storageClassName: {{ .Values.qualificationAdapter.ledger.storageClassName | quote }}
   {{- end }}
   resources:
     requests:
-      storage: {{ .Values.operationsAdapter.ledger.size }}
+      storage: {{ .Values.qualificationAdapter.ledger.size }}

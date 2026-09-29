@@ -12,8 +12,8 @@ const toneClass = (tone?: string) => tone ? `tone-${tone}` : ''
 function GuidedArchitecture({ scene }: { scene: Extract<SceneConfig, { type: 'guided-architecture' }> }) {
   const [step, setStep] = useState(0)
   const [revealed, setRevealed] = useState(false)
-  const layer = scene.layers[step]
-  const complete = step === scene.layers.length
+  const complete = step >= scene.layers.length
+  const layer = scene.layers[Math.min(step, scene.layers.length - 1)]
   const activeIds = scene.layers.slice(0, step + (revealed ? 1 : 0)).flatMap((item) => item.activeNodeIds ?? [])
   const advance = () => {
     if (!revealed) setRevealed(true)

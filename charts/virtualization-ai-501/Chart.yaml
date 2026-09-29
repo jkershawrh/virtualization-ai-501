@@ -1,6 +1,6 @@
 apiVersion: v2
 name: virtualization-ai-501
-description: Governed hybrid VM and AI day-two operations candidate
+description: Governed multi-VM inference fleet qualification candidate
 type: application
 version: 0.1.0
 appVersion: "0.1.0"

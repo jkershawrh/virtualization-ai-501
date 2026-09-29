@@ -1,0 +1,5 @@
+= 7. HANDOFF and reclaim — 9 minutes
+
+Inspect exact image digests, zero High/Critical scan summaries, SPDX SBOMs, OIDC signatures, SLSA provenance, exact-digest pull proof, journey evidence, and the `demo-story.redhat-intel.com/launchpad-handoff/v1` receipt.
+
+Uninstall the Helm release, remove the disposable namespace, verify zero residue, and retain only redacted factory receipts. This is a candidate handoff, not Launchpad certification or promotion.

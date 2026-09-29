@@ -1,0 +1,5 @@
+= 6. QUALIFY — 10 minutes
+
+Run all three deterministic outcomes. Complete evidence inside the envelope yields `ALLOW_REVIEW`; a known boundary violation yields `REFUSE`; incomplete correlation or continuity yields `ABSTAIN`.
+
+`HUMAN_PROMOTION_REQUIRED` remains true. `promotion_performed`, `certification_performed`, and every Launchpad authority remain false.

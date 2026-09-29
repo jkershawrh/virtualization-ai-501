@@ -6,11 +6,11 @@ PAGES = ROOT / "showroom/content/modules/ROOT/pages"
 
 
 class ShowroomTests(unittest.TestCase):
-    def test_lab_is_separate_and_follows_seven_state_journey(self):
-        expected = ["01-observe.adoc", "02-preflight.adoc", "03-propose.adoc", "04-approve.adoc", "05-execute.adoc", "06-validate.adoc", "07-learn-reclaim.adoc"]
+    def test_lab_is_separate_and_follows_75_to_90_minute_qualification_journey(self):
+        expected = ["01-discover.adoc", "02-baseline.adoc", "03-migrate.adoc", "04-disrupt.adoc", "05-correlate.adoc", "06-qualify.adoc", "07-handoff-reclaim.adoc"]
         self.assertTrue(all((PAGES / name).exists() for name in expected))
         joined = "\n".join((PAGES / name).read_text() for name in expected)
-        for term in ("ALLOW_REVIEW", "REFUSE", "ABSTAIN", "HUMAN_APPROVAL_REQUIRED", "zero residue", "REHEARSAL"):
+        for term in ("75–90 minutes", "ALLOW_REVIEW", "REFUSE", "ABSTAIN", "HUMAN_PROMOTION_REQUIRED", "zero residue", "REHEARSAL", "restart"):
             self.assertIn(term, joined)
 
     def test_supplemental_roadshow_was_not_copied(self):

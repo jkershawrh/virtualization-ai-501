@@ -1,6 +1,10 @@
+api_version: launchpad.redhat.com/v1alpha1
 status: PROPOSED_NOT_CERTIFIED
+catalog_item_id: virtualization-ai-501
 certification_authority: Launchpad
 factory_authority: none
 orderable: false
+certified: false
+promotion_eligible: false
 max_seats: 0
-required_receipts: [source, presentation, lab, runtime, capacity, restart, reclaim, supply-chain]
+required_receipts: [source-approval, trusted-render, destination-artifacts, live-one-seat, capacity-graduation, restart, reclaim-zero-residue, supply-chain]

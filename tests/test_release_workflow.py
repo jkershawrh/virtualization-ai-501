@@ -13,7 +13,7 @@ class ReleaseWorkflowTests(unittest.TestCase):
         for required in (
             "expected_sha", "linux/amd64", "severity-cutoff: high", "fail-build: true",
             "spdx-json", "cosign sign", "slsaprovenance", "docker pull \"$digest_ref\"",
-            "virtualization-ai-501-presentation", "virtualization-ai-501-operations-adapter",
+            "virtualization-ai-501-presentation", "virtualization-ai-501-qualification-adapter",
         ):
             self.assertIn(required, text)
 
@@ -30,8 +30,9 @@ class ReleaseWorkflowTests(unittest.TestCase):
         for forbidden in ("api_key:", "password:", "token:", "bearer "):
             self.assertNotIn(forbidden, text)
         handoff = yaml.safe_load(text)
-        self.assertFalse(handoff["authority"]["certified"])
-        self.assertFalse(handoff["authority"]["promoted"])
+        authority = handoff["factory_receipt"]["authority"]
+        self.assertFalse(authority["certified"])
+        self.assertFalse(authority["promotion_eligible"])
 
 
 if __name__ == "__main__":

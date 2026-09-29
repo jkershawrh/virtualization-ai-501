@@ -1,0 +1,5 @@
+= 4. DISRUPT — 12 minutes
+
+Apply the bounded disruption fixture, inspect its declared blast radius, and verify that unaffected VM clients remain inside the envelope. A known SLO, capacity, or containment breach is `REFUSE`.
+
+Do not substitute a healthy topology for direct failure evidence.

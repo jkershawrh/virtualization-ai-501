@@ -18,7 +18,7 @@ spec:
         - name: presentation
           image: {{ include "virtualization-ai-501.image" .Values.presentation.image | quote }}
           imagePullPolicy: {{ .Values.presentation.image.pullPolicy }}
-          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
           ports: [{name: http, containerPort: 8080}]
           readinessProbe: {httpGet: {path: /, port: http}}
           resources: {{- toYaml .Values.presentation.resources | nindent 12 }}

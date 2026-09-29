@@ -1,20 +1,20 @@
-operationsAdapter:
+qualificationAdapter:
   replicas: 1
   mode: rehearsal
-  image: {repository: localhost/virtualization-ai-501-operations-adapter, tag: 0.1.0, digest: "", pullPolicy: IfNotPresent}
+  image: {repository: localhost/virtualization-ai-501-qualification-adapter, tag: 0.1.0, digest: "", pullPolicy: IfNotPresent}
   placement: {nodeSelector: {kubernetes.io/arch: amd64}}
   ledger: {storageClassName: "", size: 256Mi}
-  model: {secretName: "", endpointKey: endpoint, modelKey: model, providerKey: provider, apiKeyKey: api-key, egressCIDR: ""}
+  inference: {secretName: "", endpointKey: endpoint, apiKeyKey: api-key, egressCIDR: ""}
   resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {cpu: 500m, memory: 256Mi}}
 presentation:
   enabled: true
   image: {repository: localhost/virtualization-ai-501-presentation, tag: 0.1.0, digest: "", pullPolicy: IfNotPresent}
   resources: {requests: {cpu: 25m, memory: 32Mi}, limits: {cpu: 100m, memory: 96Mi}}
-vm:
+fleet:
   enabled: true
-  name: operations-client
   runStrategy: RerunOnFailure
   sshAuthorizedKey: ""
+  members: [inference-client-a, inference-client-b, inference-client-c]
   placement:
     nodeSelector: {kubernetes.io/arch: amd64}
     requiredLabels: {}

@@ -1,25 +1,20 @@
 # Journey acceptance matrix
 
-| Stage | Learner action | Required proof | Unsafe result |
+| Stage | Learner action | Required proof | Fail-closed result |
 |---|---|---|---|
-| Observe | Inspect VM, VMI, application, AI adapter, storage, network, and evidence state | Named resources, timestamps, provenance, and source labels | ABSTAIN when identity or freshness is unknown |
-| Preflight | Select a bounded day-two operation | Readiness, migration policy, storage/network compatibility, health baseline | REFUSE on policy, identity, or network violation |
-| Propose | Review deterministic policy result and optional explanation | Policy version, matched rules, evidence references, no LLM authority | No executable proposal from model text alone |
-| Approve | Human accepts the exact operation envelope | Actor, operation, target, expiry, rollback, and approval receipt | No approval means no execution |
-| Execute | Observe the OpenShift/KubeVirt operation | Correlated operation events and bounded timeout | Stop and preserve evidence on timeout or divergence |
-| Validate | Recheck application and advisory AI path | Service health, network, storage, model path, placement, and correlation | Incomplete validation cannot be called recovered |
-| Learn | Compare baseline and final receipts | Outcome, exceptions, timings, evidence-chain verification | No policy promotion inside the lab |
+| DISCOVER | Inventory namespace, VM/VMI fleet, service, nodes, CPU dependencies, and evidence sources | Distinct identities and source state | Invalid contract or `ABSTAIN` on unknown evidence |
+| BASELINE | Declare and run the normal-load envelope | Current inference and telemetry measurements | `REFUSE` on known SLO/capacity breach |
+| MIGRATE | Observe externally executed placement change | Destination VM/node/CPU, inference, state, and correlation continuity | `ABSTAIN` when continuity is incomplete |
+| DISRUPT | Exercise bounded failure | Unaffected clients remain inside the envelope; zero containment breaches | `REFUSE` on containment or envelope breach |
+| CORRELATE | Join request, VM, CPU, event, inference, and telemetry identities | One complete evidence graph and reloadable ledger | `ABSTAIN` on a broken link |
+| QUALIFY | Evaluate deterministic ordered policy | Policy version, matched rule, `ALLOW_REVIEW`/`REFUSE`/`ABSTAIN` | No model or adapter override |
+| HANDOFF | Review immutable artifacts and reclaim | Digests, scans, SBOM, signature, provenance, journey, restart, zero residue | All Launchpad authority stays false |
 
-## Required scenarios
+## Release status
 
-1. Planned migration succeeds and service validation passes.
-2. Identity mismatch is refused before execution.
-3. Network or storage incompatibility is refused before execution.
-4. Missing placement or correlation evidence produces ABSTAIN.
-5. AI dependency loss enters a labeled degraded path without blocking the VM
-   operation when policy allows it.
-6. Operation timeout preserves evidence and presents rollback/recovery choices.
-7. Recovery validation catches an infrastructure-success/application-failure
-   split outcome.
-8. Cleanup removes all participant-scoped resources with zero residue.
-
+- Presenter scenes: 7 (green)
+- Presenter duration: 5–7 minutes (green)
+- Lab duration: 75–90 minutes (green)
+- Architecture-to-proof continuity: same fleet/evidence/policy path (green)
+- Fallback labeling: `REHEARSAL`/`OFFLINE` (green)
+- Live destination evidence: not observed (blocking activation, honest factory candidate)

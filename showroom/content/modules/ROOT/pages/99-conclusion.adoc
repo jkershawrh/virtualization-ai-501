@@ -1,6 +1,3 @@
 = Conclusion
 
-You operated one bounded VM and AI service path with explicit human approval,
-separate infrastructure and application validation, degraded dependency
-behavior, durable evidence, and zero-residue cleanup. The factory still has no
-certification or promotion authority. Hand the receipt bundle to Launchpad.
+You built and challenged a repeatable fleet qualification case. The result is ready only for independent human review. Launchpad owns trusted rendering, live-seat validation, capacity graduation, certification, reclaim verification, and promotion.

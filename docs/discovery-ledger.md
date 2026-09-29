@@ -2,22 +2,17 @@
 
 | Item | Classification | Consequence |
 |---|---|---|
-| 301 `91e30a4af72bb4a15a4e5dfe2f29abb5692c698f` | verified | Immutable prerequisite merged with preserved provenance. |
-| 101 `d84eabdd...` | verified | Trace literacy only; not 301 evidence. |
-| Roadshow `5d296c9c...` | verified, supplemental | Selected scheduling/observability, network boundary, and Service-label concepts. No whole-module copy. |
-| OCP 4.18.16 / Kubernetes 1.31.8 / KubeVirt APIs / linux-amd64 | verified, read-only | Inventory only; not runtime proof. |
-| Virtualization operator version | unknown | No visible CSV result. |
-| Node vendor / placement labels | unknown | Intel placement cannot be asserted. |
-| Approved model endpoint | blocked for LIVE | Launchpad-owned; factory is REHEARSAL/OFFLINE. |
-| Performance/capacity/cost/migration | excluded | No current-session measurement design. |
-| Deployment class | assumed | Namespaced development candidate; Launchpad confirms. |
-| Evidence storage | implemented, target-unverified | PVC-backed JSONL ledger; target storage class and restart receipt remain Launchpad-owned. |
-| Ingress | verified in design | Presentation Route only; adapter namespace-local. |
-| Egress | assumed | LIVE needs approved endpoint/policy; rehearsal makes no egress. |
-| Cluster scope | excluded | Namespaced resources only. |
-| Cleanup | assumed until target run | Target residue must be observed. |
+| 401 source `0672f307bf48eae2803958e290997d8c046b5c42` | verified | Exact immutable foundation for contracts, packaging, evidence, and presentation mechanics. |
+| Three-or-more VM inference clients | verified in contract/chart; target-unverified | Materially distinguishes 501 from one-workload 401 operations. |
+| Baseline, migration, disruption trials | verified in contract; REHEARSAL only | Required changed conditions; no live execution was observed. |
+| SLO/capacity/concurrency/CPU envelope | verified in contract | Declared before measurement; fixture values are not production claims. |
+| OpenShift and KubeVirt identity | unknown live | Blocks `LIVE` and destination activation. |
+| Intel Xeon placement | unknown live | CPU vendor is never inferred; direct placement evidence is mandatory. |
+| Inference execution and correlated telemetry | unknown live | Blocks `LIVE`, capacity, and performance claims. |
+| Evidence/state continuity | verified locally | Fsynced JSONL reload passes; destination PVC/restart remains Launchpad-owned. |
+| Failure containment | verified in policy/fixture | Known breaches produce `REFUSE`; destination proof remains required. |
+| AI/LLM role | excluded | Deterministic rules fully produce the decision; no model authority exists. |
+| Deployment scope | verified in chart | Participant namespace only; no cluster-scoped resources. |
+| Cleanup | verified locally, target-unverified | Factory proves disposable-state cleanup; Launchpad must prove destination zero residue. |
 
-Identity, network, and storage mismatches are refusals. Stale or incomplete
-correlation evidence is abstention. AI dependency unavailability after an
-observed operation is a degraded abstention. `ALLOW_REVIEW` never authorizes a
-workload change.
+`ALLOW_REVIEW` requests human inspection only. `REFUSE` records a known violation. `ABSTAIN` records incomplete correlation or continuity. None changes runtime or catalog state.

@@ -15,7 +15,7 @@ describe('presentation controls', () => {
   it('supports deep links', () => {
     window.history.replaceState(null, '', '/?act=1&scene=0')
     render(<App />)
-    expect(screen.getByText('Qualify the operation before proposing it')).toBeInTheDocument()
+    expect(screen.getByText('Every claim needs an owner and an evidence path')).toBeInTheDocument()
   })
 
   it('restarts from the brand control', () => {

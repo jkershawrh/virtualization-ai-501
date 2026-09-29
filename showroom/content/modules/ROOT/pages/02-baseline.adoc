@@ -1,0 +1,5 @@
+= 2. BASELINE — 12 minutes
+
+Declare the SLO, capacity, concurrency, and CPU saturation envelope before examining trial measurements. Submit the baseline fixture and trace VM → node → CPU vendor → inference request → telemetry identity.
+
+Quantitative values come from the request evidence. They are not presentation claims. Missing identity produces `ABSTAIN`.

@@ -270,6 +270,15 @@ blockquote { font: 500 clamp(1.8rem, 4vw, 3.3rem)/1.28 'Red Hat Display'; margin
 .guided-technical .architecture-answer h3 { font-size: 1rem; }
 .guided-technical .architecture-answer p { font-size: .78rem; margin: .2rem 0; }
 
+@media (min-width: 761px) and (max-height: 920px) {
+  .stage { padding: 1.25rem 2rem; }
+  .scene h1 { font-size: clamp(1.8rem, 3.2vw, 3rem); margin: .2rem auto .55rem; }
+  .scene .lede { margin-bottom: .75rem; }
+  .guided-technical .architecture-dialog { min-height: 150px; padding: .7rem 1rem; }
+  .topology-node { min-height: 60px; }
+  .technical-topology { margin: .25rem 0; }
+}
+
 .finale { cursor: default; }
 .guided-handoff { width: min(680px, 100%); display: grid; justify-items: center; gap: .8rem; margin: 2rem auto; padding: 1.5rem; border: 1px solid var(--intel-cyan); border-radius: var(--radius-md); background: var(--intel-cyan-dim); }
 .guided-handoff > strong { color: var(--intel-cyan); font-size: 1.4rem; }

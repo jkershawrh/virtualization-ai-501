@@ -1,0 +1,7 @@
+= 1. DISCOVER — 10 minutes
+
+This module begins the separate 75–90 minutes qualification lab.
+
+Inspect the namespace, three distinct VirtualMachine/VMI identities, inference service reference, NetworkPolicy, PVC, and declared Linux/AMD64 placement. Record unknown OpenShift and OpenShift Virtualization versions as blockers.
+
+Confirm that no Secret value appears in source and that every model or endpoint value is supplied by a runtime Secret reference. Begin in `REHEARSAL`.

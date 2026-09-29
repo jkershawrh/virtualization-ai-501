@@ -36,11 +36,11 @@ export function LiveJourney({ scene }: { scene: LiveJourneyScene }) {
     <div className="live-workspace-main">
       <div className="journey-status">
         <small>{step ? `CONDITION ${stepIndex + 1} OF ${scene.steps.length}` : 'GOVERNED REHEARSAL'}</small>
-        <strong>{step?.title ?? 'Start with one approved operation'}</strong>
+        <strong>{step?.title ?? 'Start with one declared qualification envelope'}</strong>
         <span>{step?.detail ?? 'Preserve the exact digest, observed result, source state, and human authority.'}</span>
         {state.source && <span className={`source-badge source-${state.source}`}>{state.source}</span>}
       </div>
-      {!step && <div className="live-workspace-intake"><span>INPUT</span><strong>Governed operation request</strong><small>One typed contract separates the platform operation, application health, AI dependency, and correlated evidence.</small></div>}
+      {!step && <div className="live-workspace-intake"><span>INPUT</span><strong>Fleet qualification request</strong><small>One typed contract binds fleet identity, trial measurements, placement, continuity, containment, and correlated evidence.</small></div>}
       {!scene.technicalTopology && step && <div className="live-architecture" aria-label="Live architecture journey">
       {scene.nodes.map((node, index) => <div className="live-node-wrap" key={node.id}>
         <div className={`live-node ${node.tone ? `tone-${node.tone}` : ''} ${step && index <= step.activeNode ? 'done' : ''} ${step?.activeNode === index ? 'active' : ''}`}>
@@ -56,14 +56,14 @@ export function LiveJourney({ scene }: { scene: LiveJourneyScene }) {
       <div className="journey-controls">
       {scene.technicalTopology && <button className="button button-secondary" onClick={() => setShowTopology((visible) => !visible)}>{showTopology ? 'Hide' : 'Inspect'} technical topology</button>}
       {stepIndex < 0 && <button className="button button-primary" onClick={() => runStep(0)}>{scene.cta}</button>}
-      {stepIndex >= 0 && !complete && state.status !== 'loading' && <button className="button button-primary" onClick={() => runStep(stepIndex + 1)}>Next governed condition →</button>}
+      {stepIndex >= 0 && !complete && state.status !== 'loading' && <button className="button button-primary" onClick={() => runStep(stepIndex + 1)}>Next qualification condition →</button>}
       {state.status === 'loading' && <button className="button button-primary" disabled>Running…</button>}
       {state.status === 'error' && <button className="button button-secondary" onClick={() => runStep(stepIndex)}>Retry</button>}
       {complete && <button className="button button-secondary" onClick={() => { setStepIndex(-1); setState({ status: 'idle' }); setShowTopology(false) }}>Replay</button>}
       {complete && scene.workspace && <a className="button button-primary" href={scene.workspace.href}>{scene.workspace.label} →</a>}
       </div>
     </div>
-    <aside className="live-workspace-context"><span>AUTHORITY</span><strong>Execution remains human-owned</strong><p>The adapter records an external operation result. It never migrates, restores, or remediates a workload.</p><small>ALLOW_REVIEW permits inspection; it never authorizes certification or promotion.</small></aside>
+    <aside className="live-workspace-context"><span>AUTHORITY</span><strong>Promotion remains human-owned</strong><p>The adapter evaluates supplied evidence. It never migrates, disrupts, certifies, or promotes a workload.</p><small>ALLOW_REVIEW permits inspection; it never authorizes certification or promotion.</small></aside>
   </div>
   {showTopology && scene.technicalTopology && <div className="live-topology-drawer"><TechnicalTopology topology={scene.technicalTopology} activeIds={step?.activeNodeIds ?? []} /></div>}
   </SceneFrame>
