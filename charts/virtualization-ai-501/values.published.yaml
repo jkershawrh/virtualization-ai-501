@@ -1,0 +1,18 @@
+presentation:
+  image:
+    repository: ghcr.io/jkershawrh/virtualization-ai-501-presentation
+    tag: ""
+    digest: sha256:6df327b493b701f14f1facc19dd9aa2085b080edf2342318770829de63a2d5d1
+
+qualificationAdapter:
+  image:
+    repository: ghcr.io/jkershawrh/virtualization-ai-501-qualification-adapter
+    tag: ""
+    digest: sha256:757226a0dd2e57f295705213acff51b3d09e5d4c1b8a8245cb0640866206e660
+
+# Retained as a receipt-only compatibility key for the inherited factory verifier.
+operationsAdapter:
+  image:
+    repository: ghcr.io/jkershawrh/virtualization-ai-501-qualification-adapter
+    tag: ""
+    digest: sha256:757226a0dd2e57f295705213acff51b3d09e5d4c1b8a8245cb0640866206e660

@@ -1,0 +1,1 @@
+ghcr.io/jkershawrh/virtualization-ai-501-presentation@sha256:6df327b493b701f14f1facc19dd9aa2085b080edf2342318770829de63a2d5d1

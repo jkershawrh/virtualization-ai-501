@@ -1,0 +1,38 @@
+{
+  "schema_version": "demo-story.redhat-intel.com/artifact-release-evidence/v1",
+  "component": "presentation",
+  "source_revision": "14799e38d587f48b850aab283016dd3da16a8acc",
+  "image": "ghcr.io/jkershawrh/virtualization-ai-501-presentation@sha256:6df327b493b701f14f1facc19dd9aa2085b080edf2342318770829de63a2d5d1",
+  "architecture": "linux/amd64",
+  "release_run": {
+    "id": 36501674381,
+    "job_id": 109194114408,
+    "url": "https://github.com/jkershawrh/virtualization-ai-501/actions/runs/36501674381",
+    "result": "PASS"
+  },
+  "vulnerability_inventory": {
+    "unknown": 0,
+    "negligible": 0,
+    "low": 0,
+    "medium": 4,
+    "high": 0,
+    "critical": 0,
+    "result": "PASS"
+  },
+  "controls": {
+    "exact_digest_pull": "PASS",
+    "oci_source_revision": "PASS",
+    "spdx_sbom": "PASS",
+    "keyless_oidc_signature": "PASS",
+    "slsa_provenance_attestation": "PASS"
+  },
+  "evidence": {
+    "image": {"path": "release/presentation/image-presentation.txt", "sha256": "9afa8d00b517c85ce70aa62e172ef3a261658a6c495493b0f7d11b6d3acb40f1"},
+    "vulnerability_inventory": {"path": "release/presentation/vulnerability-presentation.json", "sha256": "abda13e53be7e15c39b1efff67d6bfa591b916d5f08d8b7b1b763f7a46b5cc65"},
+    "spdx_sbom": {"path": "release/presentation/sbom-presentation.spdx.json", "sha256": "3bcac0cfa7d22fd089702d2cfb72282b49bbff58bacd512adffd0d6a00bfc5a5"},
+    "signature_verification": {"path": "release/presentation/signature-verification-presentation.json", "sha256": "89bf4b6caec4dac2042996ce5a45b19b2483f3168dd55cb4f531ebb36e3bbeb1"},
+    "sbom_attestation_verification": {"path": "release/presentation/sbom-verification-presentation.json", "sha256": "83f9ab2ff009cb4cf2cd34cfed6475138e25cd271fb42f92302c4e239e0103f0"},
+    "provenance": {"path": "release/presentation/provenance-presentation.json", "sha256": "7746312a3c2772d5a78e788f7c85485f6063bd779beba0126fa64570fa8a1837"},
+    "provenance_attestation_verification": {"path": "release/presentation/provenance-verification-presentation.json", "sha256": "cac8e5c4882133fa64353e27e378177e60209a80246836a35b64a0a1f956cc38"}
+  }
+}

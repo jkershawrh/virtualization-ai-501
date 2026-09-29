@@ -1,0 +1,33 @@
+{
+  "certified": false,
+  "conditions": [
+    {
+      "decision": "ALLOW_REVIEW",
+      "promotion_performed": false,
+      "records": 7,
+      "request_id": "qualification-healthy-001",
+      "source_state": "REHEARSAL"
+    },
+    {
+      "decision": "REFUSE",
+      "promotion_performed": false,
+      "records": 7,
+      "request_id": "qualification-capacity-001",
+      "source_state": "REHEARSAL"
+    },
+    {
+      "decision": "ABSTAIN",
+      "promotion_performed": false,
+      "records": 7,
+      "request_id": "qualification-correlation-001",
+      "source_state": "REHEARSAL"
+    }
+  ],
+  "promoted": false,
+  "recorded_at": "2026-09-29T00:13:35.849303Z",
+  "restart_records": 21,
+  "result": "PASS",
+  "schema_version": "demo-story.redhat-intel.com/factory-development-journey/v1",
+  "source_revision": "14799e38d587f48b850aab283016dd3da16a8acc",
+  "source_state": "REHEARSAL"
+}

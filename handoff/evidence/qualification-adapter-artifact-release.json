@@ -1,0 +1,38 @@
+{
+  "schema_version": "demo-story.redhat-intel.com/artifact-release-evidence/v1",
+  "component": "qualification-adapter",
+  "source_revision": "14799e38d587f48b850aab283016dd3da16a8acc",
+  "image": "ghcr.io/jkershawrh/virtualization-ai-501-qualification-adapter@sha256:757226a0dd2e57f295705213acff51b3d09e5d4c1b8a8245cb0640866206e660",
+  "architecture": "linux/amd64",
+  "release_run": {
+    "id": 36501674381,
+    "job_id": 109194114416,
+    "url": "https://github.com/jkershawrh/virtualization-ai-501/actions/runs/36501674381",
+    "result": "PASS"
+  },
+  "vulnerability_inventory": {
+    "unknown": 0,
+    "negligible": 0,
+    "low": 0,
+    "medium": 6,
+    "high": 0,
+    "critical": 0,
+    "result": "PASS"
+  },
+  "controls": {
+    "exact_digest_pull": "PASS",
+    "oci_source_revision": "PASS",
+    "spdx_sbom": "PASS",
+    "keyless_oidc_signature": "PASS",
+    "slsa_provenance_attestation": "PASS"
+  },
+  "evidence": {
+    "image": {"path": "release/qualification-adapter/image-qualification-adapter.txt", "sha256": "2c7b4dcfcf65898ce51f7613e336683bcee3094a1c2d0c9c112f42259f5edda0"},
+    "vulnerability_inventory": {"path": "release/qualification-adapter/vulnerability-qualification-adapter.json", "sha256": "57b8470652b4b5bee10062b3e44bf1618a9a3558fe3d05b2bcd93fd4162b4b76"},
+    "spdx_sbom": {"path": "release/qualification-adapter/sbom-qualification-adapter.spdx.json", "sha256": "304f240884283ad31d51648a9bd9b117918d85a56d5b363687fa47a3af8b320c"},
+    "signature_verification": {"path": "release/qualification-adapter/signature-verification-qualification-adapter.json", "sha256": "49ea32540f3004430ff82c4813d5ae0ec1c926b2a386ee78125782a3fbf20d97"},
+    "sbom_attestation_verification": {"path": "release/qualification-adapter/sbom-verification-qualification-adapter.json", "sha256": "447dd236bc3a671f01875bb3e297ee206bb84c487c9c409371fbf381bc66281e"},
+    "provenance": {"path": "release/qualification-adapter/provenance-qualification-adapter.json", "sha256": "7746312a3c2772d5a78e788f7c85485f6063bd779beba0126fa64570fa8a1837"},
+    "provenance_attestation_verification": {"path": "release/qualification-adapter/provenance-verification-qualification-adapter.json", "sha256": "5892a7647fe32575ae3d6081321b717cde3774a78fe133f818b37f91a32afa76"}
+  }
+}

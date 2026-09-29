@@ -1,0 +1,11 @@
+{
+  "certified": false,
+  "promoted": false,
+  "recorded_at": "2026-09-29T00:13:35.849303Z",
+  "result": "PASS",
+  "schema_version": "demo-story.redhat-intel.com/factory-zero-residue/v1",
+  "source_revision": "14799e38d587f48b850aab283016dd3da16a8acc",
+  "source_state": "REHEARSAL",
+  "temporary_root_removed": true,
+  "tracked_runtime_residue": []
+}
