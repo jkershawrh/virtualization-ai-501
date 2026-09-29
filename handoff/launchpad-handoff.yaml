@@ -2,11 +2,11 @@ schema_version: demo-story.redhat-intel.com/launchpad-handoff/v1
 factory_receipt:
   identity: {catalog_item_id: virtualization-ai-501, display_name: "Virtualization + AI 501 — Qualify a Governed VM Inference Fleet", proposed_track: virtualization_ai, proposed_learning_level: "501"}
   authority: {orderable: false, certified: false, promotion_eligible: false, may_modify_launchpad_catalog: false, may_provision: false, may_publish: false}
-  presentation_source: {repository: https://github.com/jkershawrh/virtualization-ai-501, revision: "14799e38d587f48b850aab283016dd3da16a8acc", tree_dirty: false}
+  presentation_source: {repository: "https://github.com/jkershawrh/virtualization-ai-501", revision: "14799e38d587f48b850aab283016dd3da16a8acc", tree_dirty: false}
   artifacts:
-    workload: {image: "ghcr.io/jkershawrh/virtualization-ai-501-qualification-adapter@sha256:757226a0dd2e57f295705213acff51b3d09e5d4c1b8a8245cb0640866206e660", architecture: linux/amd64, source_repository: https://github.com/jkershawrh/virtualization-ai-501, source_revision: "14799e38d587f48b850aab283016dd3da16a8acc", release_receipt: {path: evidence/qualification-adapter-artifact-release.json, sha256: "a8e622a29cca9ab847b125b8390b96a7934d9024fe7ddb419913396d7e9f4975"}}
-    presentation: {image: "ghcr.io/jkershawrh/virtualization-ai-501-presentation@sha256:6df327b493b701f14f1facc19dd9aa2085b080edf2342318770829de63a2d5d1", architecture: linux/amd64, source_repository: https://github.com/jkershawrh/virtualization-ai-501, source_revision: "14799e38d587f48b850aab283016dd3da16a8acc", release_receipt: {path: evidence/presentation-artifact-release.json, sha256: "3a6fdf2fc275858baad9fed0b6f15eb43a423451508727af24b37d0500dabf2c"}}
-    showroom_content: {repository: https://github.com/jkershawrh/virtualization-ai-501, revision: "14799e38d587f48b850aab283016dd3da16a8acc", bundle_digest: "sha256:66b0b06747e1a7bd1804c7fb31f96f75c14c2333d03e8aa00fd2ac70a4db809a"}
+    workload: {image: "ghcr.io/jkershawrh/virtualization-ai-501-qualification-adapter@sha256:757226a0dd2e57f295705213acff51b3d09e5d4c1b8a8245cb0640866206e660", architecture: linux/amd64, source_repository: "https://github.com/jkershawrh/virtualization-ai-501", source_revision: "14799e38d587f48b850aab283016dd3da16a8acc", release_receipt: {path: evidence/qualification-adapter-artifact-release.json, sha256: "a8e622a29cca9ab847b125b8390b96a7934d9024fe7ddb419913396d7e9f4975"}}
+    presentation: {image: "ghcr.io/jkershawrh/virtualization-ai-501-presentation@sha256:6df327b493b701f14f1facc19dd9aa2085b080edf2342318770829de63a2d5d1", architecture: linux/amd64, source_repository: "https://github.com/jkershawrh/virtualization-ai-501", source_revision: "14799e38d587f48b850aab283016dd3da16a8acc", release_receipt: {path: evidence/presentation-artifact-release.json, sha256: "3a6fdf2fc275858baad9fed0b6f15eb43a423451508727af24b37d0500dabf2c"}}
+    showroom_content: {repository: "https://github.com/jkershawrh/virtualization-ai-501", revision: "14799e38d587f48b850aab283016dd3da16a8acc", bundle_digest: "sha256:66b0b06747e1a7bd1804c7fb31f96f75c14c2333d03e8aa00fd2ac70a4db809a"}
   factory_evidence:
     development_journey: {path: evidence/factory-development-journey.json, sha256: "ddb78400e62748a909a348f058e2875a17c4c96a83777ccc21ff45a99a27cf2e"}
     presentation_verification: {path: evidence/presentation-verification.json, sha256: "c4ee1632f8f3d890d087caee9979d3a7c06704d2db1756d9233b26ccebf168ec"}
@@ -21,8 +21,8 @@ proposed_launchpad_intake:
   catalog: {catalog_item_id: virtualization-ai-501, display_name: "Virtualization + AI 501 — Qualify a Governed VM Inference Fleet", description: "Non-orderable factory candidate for fleet-scale VM inference qualification.", category: guided_build, version: 0.1.0, status: draft}
   learning: {learning_level: "501", learning_stage: Qualify, experience_type: system_qualification, prerequisites: [virtualization-ai-401], recommended_next_items: [], journey_role: core, specialty_family: null, branches_from: virtualization-ai-401, returns_to: null, shared_blueprint: red-hat-intel-virtualization-ai-v1, solution_family: virtualization_ai}
   sources:
-    showroom: {repo_url: https://github.com/jkershawrh/virtualization-ai-501, revision: "14799e38d587f48b850aab283016dd3da16a8acc", playbook: showroom/default-site.yml, start_path: showroom/content}
-    workload: {repo_url: https://github.com/jkershawrh/virtualization-ai-501, revision: "14799e38d587f48b850aab283016dd3da16a8acc", deploy_path: charts/virtualization-ai-501}
+    showroom: {repo_url: "https://github.com/jkershawrh/virtualization-ai-501", revision: "14799e38d587f48b850aab283016dd3da16a8acc", playbook: showroom/default-site.yml, start_path: showroom/content}
+    workload: {repo_url: "https://github.com/jkershawrh/virtualization-ai-501", revision: "14799e38d587f48b850aab283016dd3da16a8acc", deploy_path: charts/virtualization-ai-501}
   runtime:
     deployment_type: helm
     deployment_class: participant_namespace
