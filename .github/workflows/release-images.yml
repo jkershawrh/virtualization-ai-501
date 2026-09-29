@@ -31,6 +31,8 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: python3 -m pip install --requirement requirements-test.txt
       - run: npm run check
+      - name: Build exact workload Containerfile from repository root
+        run: docker build --platform linux/amd64 --file workload/Containerfile --tag virtualization-ai-501-qualification-adapter:qualification-gate .
       - run: npx playwright install --with-deps chromium
       - run: npm run test:visual
       - run: npm audit --audit-level=high

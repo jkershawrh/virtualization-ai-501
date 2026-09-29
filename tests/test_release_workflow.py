@@ -14,6 +14,7 @@ class ReleaseWorkflowTests(unittest.TestCase):
             "expected_sha", "linux/amd64", "severity-cutoff: high", "fail-build: true",
             "spdx-json", "cosign sign", "slsaprovenance", "docker pull \"$digest_ref\"",
             "virtualization-ai-501-presentation", "virtualization-ai-501-qualification-adapter",
+            "docker build --platform linux/amd64 --file workload/Containerfile",
         ):
             self.assertIn(required, text)
 
@@ -24,6 +25,11 @@ class ReleaseWorkflowTests(unittest.TestCase):
                     image = line.split()[1]
                     self.assertRegex(image, r"@sha256:[0-9a-f]{64}$")
                     self.assertNotIn(":latest", image)
+
+    def test_workload_container_copies_the_501_policy(self):
+        text = (ROOT / "workload/Containerfile").read_text()
+        self.assertIn("contracts/qualification-policy.json", text)
+        self.assertNotIn("contracts/governance-policy.json", text)
 
     def test_handoff_contains_no_credentials_or_certification(self):
         text = (ROOT / "handoff/launchpad-handoff.yaml").read_text().lower()
