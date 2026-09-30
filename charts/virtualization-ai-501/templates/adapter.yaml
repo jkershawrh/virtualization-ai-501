@@ -20,7 +20,7 @@ spec:
       securityContext: {runAsNonRoot: true, fsGroup: 65532, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: qualification-adapter
-          image: {{ include "virtualization-ai-501.image" .Values.qualificationAdapter.image | quote }}
+          image: {{ default (include "virtualization-ai-501.image" .Values.qualificationAdapter.image) .Values.workload_image | quote }}
           imagePullPolicy: {{ .Values.qualificationAdapter.image.pullPolicy }}
           securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
           ports: [{name: http, containerPort: 8080}]

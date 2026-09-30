@@ -1,3 +1,4 @@
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -22,6 +23,22 @@ class PackagingTests(unittest.TestCase):
             for component in ("operationsAdapter", "presentation"):
                 self.assertRegex(values[component]["image"]["digest"], r"^sha256:[0-9a-f]{64}$")
             self.assertNotIn("TO_BE_FILLED", path.read_text())
+
+    def test_launchpad_flat_image_values_override_nested_defaults(self):
+        workload = "ghcr.io/example/virt501-adapter@sha256:" + "a" * 64
+        presentation = "ghcr.io/example/virt501-presentation@sha256:" + "b" * 64
+        render = subprocess.run(
+            [
+                "helm", "template", "virtualization-ai-501", str(CHART),
+                "--set-string", f"workload_image={workload}",
+                "--set-string", f"presentation_image={presentation}",
+            ],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(render.returncode, 0, render.stderr)
+        self.assertIn(f'image: "{workload}"', render.stdout)
+        self.assertIn(f'image: "{presentation}"', render.stdout)
 
 
 if __name__ == "__main__":
