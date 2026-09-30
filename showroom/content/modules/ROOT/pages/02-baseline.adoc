@@ -1,5 +1,26 @@
 = 2. BASELINE — 12 minutes
 
-Declare the SLO, capacity, concurrency, and CPU saturation envelope before examining trial measurements. Submit the baseline fixture and trace VM → node → CPU vendor → inference request → telemetry identity.
+== Show
 
-Quantitative values come from the request evidence. They are not presentation claims. Missing identity produces `ABSTAIN`.
+The reviewer declares the envelope before reading trial measurements: p95
+latency, success rate, concurrency, and CPU saturation.
+
+== Learn
+
+The numbers in this lab are synthetic rehearsal inputs. They demonstrate the
+qualification decision, not measured hardware performance.
+
+== Do
+
+[source,bash,role="execute"]
+----
+curl -fsS "$FIXTURE_ROOT/qualified-fleet-request.json" -o /tmp/fleet-qualified.json
+jq '{request_id,envelope,fleet:[.fleet.virtual_machines[].name],trials:[.trials[]|{kind,p95_ms,success_rate,cpu_saturation_pct}]}' /tmp/fleet-qualified.json
+----
+
+== Prove
+
+[source,bash,role="execute"]
+----
+jq -e '.evidence_snapshot | all(.source_state == "REHEARSAL")' /tmp/fleet-qualified.json
+----

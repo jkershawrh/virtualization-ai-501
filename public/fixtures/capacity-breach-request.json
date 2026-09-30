@@ -1,0 +1,29 @@
+{
+  "schema_version": "demo-story.redhat-intel.com/virtualization-ai-501/qualification-request/v1",
+  "request_id": "qualification-capacity-001",
+  "requested_by": "factory-reviewer",
+  "fleet": {"namespace": "virt-ai-501", "inference_service": "cpu-inference", "virtual_machines": [
+    {"name": "inference-client-a", "node": "worker-a", "architecture": "amd64", "cpu_vendor": "GenuineIntel"},
+    {"name": "inference-client-b", "node": "worker-b", "architecture": "amd64", "cpu_vendor": "GenuineIntel"},
+    {"name": "inference-client-c", "node": "worker-c", "architecture": "amd64", "cpu_vendor": "GenuineIntel"}
+  ]},
+  "envelope": {"max_p95_ms": 800, "min_success_rate": 0.98, "max_concurrency": 12, "max_cpu_saturation_pct": 90},
+  "trials": [
+    {"kind": "BASELINE", "concurrency": 12, "requests": 120, "success_rate": 1.0, "p95_ms": 420, "cpu_saturation_pct": 72, "containment_breaches": 0, "correlation_complete": true, "state_continuity": true},
+    {"kind": "MIGRATION", "concurrency": 12, "requests": 120, "success_rate": 0.99, "p95_ms": 610, "cpu_saturation_pct": 79, "containment_breaches": 0, "correlation_complete": true, "state_continuity": true},
+    {"kind": "DISRUPTION", "concurrency": 12, "requests": 120, "success_rate": 0.98, "p95_ms": 920, "cpu_saturation_pct": 84, "containment_breaches": 0, "correlation_complete": true, "state_continuity": true}
+  ],
+  "evidence_snapshot": [
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-openshift","request_id":"qualification-capacity-001","state":"DISCOVER","kind":"OPENSHIFT","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:0000000000000000000000000000000000000000000000000000000000000000","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-kubevirt","request_id":"qualification-capacity-001","state":"DISCOVER","kind":"KUBEVIRT","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-vm-aa","request_id":"qualification-capacity-001","state":"DISCOVER","kind":"VM","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","payload":{"vm":"inference-client-a"}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-vm-bb","request_id":"qualification-capacity-001","state":"DISCOVER","kind":"VM","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:3333333333333333333333333333333333333333333333333333333333333333","payload":{"vm":"inference-client-b"}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-vm-cc","request_id":"qualification-capacity-001","state":"DISCOVER","kind":"VM","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:4444444444444444444444444444444444444444444444444444444444444444","payload":{"vm":"inference-client-c"}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-migrate","request_id":"qualification-capacity-001","state":"MIGRATE","kind":"MIGRATION","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:5555555555555555555555555555555555555555555555555555555555555555","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-disrupt","request_id":"qualification-capacity-001","state":"DISRUPT","kind":"DISRUPTION","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-placement","request_id":"qualification-capacity-001","state":"CORRELATE","kind":"CPU_PLACEMENT","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:7777777777777777777777777777777777777777777777777777777777777777","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-inference","request_id":"qualification-capacity-001","state":"CORRELATE","kind":"INFERENCE","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:8888888888888888888888888888888888888888888888888888888888888888","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-telemetry","request_id":"qualification-capacity-001","state":"CORRELATE","kind":"TELEMETRY","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:9999999999999999999999999999999999999999999999999999999999999999","payload":{}},
+    {"schema_version":"demo-story.redhat-intel.com/virtualization-ai-501/evidence/v1","evidence_id":"ev-continuity","request_id":"qualification-capacity-001","state":"CORRELATE","kind":"CONTINUITY","source":"fixture","source_state":"REHEARSAL","observed_at":"2026-09-28T12:00:00Z","freshness":"FRESH","digest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","payload":{}}
+  ]
+}

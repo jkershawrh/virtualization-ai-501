@@ -1,5 +1,25 @@
 = 3. MIGRATE — 12 minutes
 
-Compare the baseline with the externally observed migration trial. Verify destination placement, inference execution, request correlation, state continuity, and the absence of a containment breach.
+== Show
 
-The qualification adapter never initiates a migration. A completed migration without correlated service evidence is `ABSTAIN`.
+The migration trial compares a declared before/after service observation. The
+adapter never initiates a migration.
+
+== Learn
+
+Destination placement alone is insufficient. Inference correlation and state
+continuity must remain complete or the result is `ABSTAIN`.
+
+== Do
+
+[source,bash,role="execute"]
+----
+jq '.trials[] | select(.kind == "MIGRATION")' /tmp/fleet-qualified.json
+----
+
+== Prove
+
+[source,bash,role="execute"]
+----
+jq -e '.trials[] | select(.kind == "MIGRATION") | .correlation_complete and .state_continuity' /tmp/fleet-qualified.json
+----

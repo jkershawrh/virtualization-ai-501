@@ -1,5 +1,38 @@
-= 7. HANDOFF and reclaim — 9 minutes
+= 7. HANDOFF and participant cleanup — 9 minutes
 
-Inspect exact image digests, zero High/Critical scan summaries, SPDX SBOMs, OIDC signatures, SLSA provenance, exact-digest pull proof, journey evidence, and the `demo-story.redhat-intel.com/launchpad-handoff/v1` receipt.
+== Show
 
-Uninstall the Helm release, remove the disposable namespace, verify zero residue, and retain only redacted factory receipts. This is a candidate handoff, not Launchpad certification or promotion.
+The durable ledger lets a reviewer retrieve the complete qualification evidence
+by request identifier.
+
+== Learn
+
+Participants remove only local fixture/result files. Launchpad owns namespace reclamation
+and zero residue verification. Adapter restart and PVC continuity
+are platform certification checks, not participant mutations. Do not uninstall the lab, delete its
+namespace, shared operators, CRDs, nodes, storage classes, or Secrets.
+
+== Do
+
+[source,bash,role="execute"]
+----
+REQUEST_ID="$(jq -r .request_id /tmp/fleet-qualified-result.json)"
+curl -fsS "$QUAL_URL/api/v1/qualifications/$REQUEST_ID" | tee /tmp/fleet-ledger.json | jq '{request_id,states:[.evidence[].state],records:(.evidence|length)}'
+----
+
+[source,bash,role="execute"]
+----
+curl -fsS "$QUAL_URL/metrics" | grep '^virtualization_ai_501_'
+----
+
+== Prove
+
+[source,bash,role="execute"]
+----
+jq -e '.evidence | length > 0' /tmp/fleet-ledger.json
+rm -f /tmp/fleet-{qualified,capacity,gap}{,-result}.json /tmp/fleet-ledger.json
+----
+
+The handoff is evidence for independent human review, not Launchpad
+certification or promotion. It proves the 401 single-operation boundary can be
+evaluated at fleet scale without granting the adapter authority.

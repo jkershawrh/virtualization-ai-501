@@ -1,5 +1,26 @@
 = 4. DISRUPT — 12 minutes
 
-Apply the bounded disruption fixture, inspect its declared blast radius, and verify that unaffected VM clients remain inside the envelope. A known SLO, capacity, or containment breach is `REFUSE`.
+== Show
 
-Do not substitute a healthy topology for direct failure evidence.
+A bounded disruption tests whether unaffected clients remain inside the
+predeclared envelope.
+
+== Learn
+
+A known SLO, capacity, or containment breach must `REFUSE`. A healthy topology
+cannot substitute for direct failure evidence.
+
+== Do
+
+[source,bash,role="execute"]
+----
+curl -fsS "$FIXTURE_ROOT/capacity-breach-request.json" -o /tmp/fleet-capacity.json
+jq '.trials[] | select(.kind == "DISRUPTION")' /tmp/fleet-capacity.json
+----
+
+== Prove
+
+[source,bash,role="execute"]
+----
+jq -e '(.trials[] | select(.kind == "DISRUPTION") | .p95_ms) > .envelope.max_p95_ms' /tmp/fleet-capacity.json
+----

@@ -35,8 +35,12 @@ class FactoryTests(unittest.TestCase):
     def test_fixtures_are_rehearsal_and_never_promote(self):
         for path in sorted((ROOT / "public/fixtures").glob("*.json")):
             data = json.loads(path.read_text())
-            self.assertEqual(data["source_state"], "REHEARSAL")
-            self.assertFalse(data["authority"]["promotion_performed"])
+            if path.name.endswith("-request.json"):
+                self.assertTrue(data["evidence_snapshot"])
+                self.assertTrue(all(item["source_state"] == "REHEARSAL" for item in data["evidence_snapshot"]))
+            else:
+                self.assertEqual(data["source_state"], "REHEARSAL")
+                self.assertFalse(data["authority"]["promotion_performed"])
 
 
 if __name__ == "__main__":

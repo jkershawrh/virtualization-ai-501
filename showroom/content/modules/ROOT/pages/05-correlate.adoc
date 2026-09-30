@@ -1,5 +1,26 @@
 = 5. CORRELATE — 10 minutes
 
-Follow the shared request identifier across VM identity, CPU placement, inference response, migration/disruption event, and telemetry. Break one correlation field and confirm `ABSTAIN`.
+== Show
 
-Restart the adapter, reload the PVC-backed JSONL ledger, and prove that state and evidence continuity survive restart.
+One request identifier must connect VM identity, placement, inference,
+migration/disruption events, telemetry, and continuity.
+
+== Learn
+
+Missing correlation is uncertainty, not failure evidence. The correct decision
+is `ABSTAIN`.
+
+== Do
+
+[source,bash,role="execute"]
+----
+curl -fsS "$FIXTURE_ROOT/correlation-gap-request.json" -o /tmp/fleet-gap.json
+jq '[.trials[] | {kind,correlation_complete,state_continuity}]' /tmp/fleet-gap.json
+----
+
+== Prove
+
+[source,bash,role="execute"]
+----
+jq -e '.trials | any(.correlation_complete == false)' /tmp/fleet-gap.json
+----
