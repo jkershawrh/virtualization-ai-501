@@ -1,0 +1,11 @@
+site:
+  title: Virtualization + AI 501
+  start_page: virtualization-ai-501::index.adoc
+content:
+  sources:
+    - url: .
+      start_path: showroom/content
+ui:
+  bundle:
+    url: https://github.com/rhpds/showroom_theme_rhdp/releases/latest/download/ui-bundle.zip
+    snapshot: true

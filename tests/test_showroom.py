@@ -1,11 +1,21 @@
 import unittest
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ROOT / "showroom/content/modules/ROOT/pages"
-
-
 class ShowroomTests(unittest.TestCase):
+    def test_showroom_playbook_is_discoverable_from_the_repository_root(self):
+        """The deployed Showroom content container resolves start_path from repo root."""
+        playbook = ROOT / "default-site.yml"
+        self.assertTrue(playbook.is_file())
+        config = yaml.safe_load(playbook.read_text())
+        source = config["content"]["sources"][0]
+        self.assertEqual(source["url"], ".")
+        self.assertEqual(source["start_path"], "showroom/content")
+        self.assertTrue((ROOT / source["start_path"] / "antora.yml").is_file())
+
     def test_lab_is_separate_and_follows_75_to_90_minute_qualification_journey(self):
         expected = ["01-discover.adoc", "02-baseline.adoc", "03-migrate.adoc", "04-disrupt.adoc", "05-correlate.adoc", "06-qualify.adoc", "07-handoff-reclaim.adoc"]
         self.assertTrue(all((PAGES / name).exists() for name in expected))
