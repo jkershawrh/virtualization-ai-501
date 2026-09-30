@@ -22,6 +22,16 @@ class PackagingTests(unittest.TestCase):
         ):
             self.assertIn(directive, nginx)
 
+    def test_presentation_chart_provides_writable_ephemeral_tmp(self):
+        render = subprocess.run(
+            ["helm", "template", "virtualization-ai-501", str(CHART)],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(render.returncode, 0, render.stderr)
+        self.assertIn("mountPath: /tmp", render.stdout)
+        self.assertIn("emptyDir: {}", render.stdout)
+
     def test_chart_expresses_governance_without_secret_values(self):
         rendered = "\n".join(path.read_text() for path in (CHART / "templates").glob("*"))
         for term in ("NetworkPolicy", "nodeSelector", "serviceAccountName", "ServiceMonitor", "/metrics", "secretKeyRef", "PersistentVolumeClaim", "LEDGER_PATH"):

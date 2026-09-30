@@ -22,6 +22,11 @@ spec:
           ports: [{name: http, containerPort: 8080}]
           readinessProbe: {httpGet: {path: /, port: http}}
           resources: {{- toYaml .Values.presentation.resources | nindent 12 }}
+          volumeMounts:
+            - {name: nginx-tmp, mountPath: /tmp}
+      volumes:
+        - name: nginx-tmp
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
