@@ -26,8 +26,8 @@ promotion.
 ----
 export LAB_NAMESPACE="$(oc project -q)"
 export QUAL_URL="http://virtualization-ai-501-qualification-adapter:8080"
-export SHOWROOM_URL="https://$(oc get route -o json | jq -r '.items[] | select(.spec.host | startswith("showroom-")) | .spec.host' | head -1)"
-export FIXTURE_ROOT="$SHOWROOM_URL/fixtures"
+export PRESENTATION_URL="https://$(oc get route virtualization-ai-501 -n "$LAB_NAMESPACE" -o jsonpath='{.spec.host}')"
+export FIXTURE_ROOT="$PRESENTATION_URL/fixtures"
 printf 'namespace=%s\nadapter=%s\n' "$LAB_NAMESPACE" "$QUAL_URL"
 ----
 
