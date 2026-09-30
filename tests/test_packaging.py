@@ -12,6 +12,7 @@ class PackagingTests(unittest.TestCase):
         nginx = (ROOT / "nginx.conf").read_text()
 
         self.assertIn("COPY nginx.conf /etc/nginx/nginx.conf", containerfile)
+        self.assertIn("worker_processes 1;", nginx)
         self.assertIn("pid /tmp/nginx.pid;", nginx)
         for directive in (
             "client_body_temp_path /tmp/client_temp;",
@@ -31,6 +32,19 @@ class PackagingTests(unittest.TestCase):
         self.assertEqual(render.returncode, 0, render.stderr)
         self.assertIn("mountPath: /tmp", render.stdout)
         self.assertIn("emptyDir: {}", render.stdout)
+
+    def test_chart_accepts_destination_storage_and_uses_scc_assigned_groups(self):
+        render = subprocess.run(
+            [
+                "helm", "template", "virtualization-ai-501", str(CHART),
+                "--set-string", "storage_class=nfs-storage",
+            ],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(render.returncode, 0, render.stderr)
+        self.assertIn('storageClassName: "nfs-storage"', render.stdout)
+        self.assertNotIn("fsGroup: 65532", render.stdout)
 
     def test_chart_expresses_governance_without_secret_values(self):
         rendered = "\n".join(path.read_text() for path in (CHART / "templates").glob("*"))

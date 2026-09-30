@@ -17,7 +17,8 @@ spec:
       serviceAccountName: virtualization-ai-501
       automountServiceAccountToken: false
       nodeSelector: {{- toYaml .Values.qualificationAdapter.placement.nodeSelector | nindent 8 }}
-      securityContext: {runAsNonRoot: true, fsGroup: 65532, seccompProfile: {type: RuntimeDefault}}
+      # OpenShift SCC assigns the namespace-valid UID/GID range.
+      securityContext: {runAsNonRoot: true, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: qualification-adapter
           image: {{ default (include "virtualization-ai-501.image" .Values.qualificationAdapter.image) .Values.workload_image | quote }}

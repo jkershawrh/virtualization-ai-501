@@ -1,3 +1,4 @@
+storage_class: ""
 qualificationAdapter:
   replicas: 1
   mode: rehearsal
