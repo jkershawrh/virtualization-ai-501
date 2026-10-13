@@ -26,10 +26,14 @@ promotion.
 ----
 export LAB_NAMESPACE="$(oc project -q)"
 export QUAL_URL="http://virtualization-ai-501-qualification-adapter:8080"
-export PRESENTATION_URL="https://$(oc get route virtualization-ai-501 -n "$LAB_NAMESPACE" -o jsonpath='{.spec.host}')"
+export PRESENTATION_URL="http://virtualization-ai-501-presentation:8080"
 export FIXTURE_ROOT="$PRESENTATION_URL/fixtures"
 printf 'namespace=%s\nadapter=%s\n' "$LAB_NAMESPACE" "$QUAL_URL"
 ----
+
+The terminal uses the namespace-local presentation Service for fixture retrieval.
+For the interactive presentation, use the embedded *Story* tab; this Service URL
+is not a link to open from your laptop. No TLS verification bypass is required.
 
 == Prove
 

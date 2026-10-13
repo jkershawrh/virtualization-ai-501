@@ -4,4 +4,5 @@ site:
 content:
   sources: [{url: ./content, start_path: .}]
 ui:
+  supplemental_files: ./supplemental-ui
   bundle: {url: https://github.com/rhpds/showroom_theme_rhdp/releases/latest/download/ui-bundle.zip, snapshot: true}
