@@ -13,5 +13,6 @@ const cases = [
 ] as const
 
 for (const [id, body, data] of cases) {
-  registerAdapter(createJsonAdapter({ id, url: '/api/v1/qualifications', method: 'POST', body, timeoutMs: 2_500, rehearsal: { data, collectedAt: '2026-09-28T12:05:00.000Z' } }))
+  // Resolve beneath the presentation at either / or its entitled lab mount.
+  registerAdapter(createJsonAdapter({ id, url: './api/v1/qualifications', method: 'POST', body, timeoutMs: 2_500, rehearsal: { data, collectedAt: '2026-09-28T12:05:00.000Z' } }))
 }
