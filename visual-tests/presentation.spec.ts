@@ -46,7 +46,9 @@ test('internal architecture and live-condition reveals fit at both desktop sizes
   await page.goto('/?act=1&scene=0')
   for (let index = 0; index < 8; index += 1) {
     await assertFit(`architecture reveal ${index}`)
-    await page.getByRole('button', { name: /Reveal technical boundary|Ask next question|Complete architecture/ }).click({ force: true })
+    // Let the browser wait for visibility and animation stability, as a
+    // participant must. Force-click races the outgoing scene transition.
+    await page.getByRole('button', { name: /Reveal technical boundary|Ask next question|Complete architecture/ }).click()
   }
   await assertFit('architecture complete')
 
