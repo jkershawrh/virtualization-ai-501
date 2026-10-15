@@ -79,3 +79,21 @@ test('keyboard journey reaches an explicit close', async ({ page }) => {
   await page.keyboard.press('ArrowRight')
   await expect(page.getByRole('button', { name: 'Close presentation' })).toBeVisible()
 })
+
+test('qualification controls remain reachable in a narrow Showroom pane', async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 640 })
+  await page.goto('/?act=3&scene=0')
+  await page.getByRole('button', { name: /run qualification conditions/i }).click()
+  for (let condition = 1; condition <= 3; condition += 1) {
+    await expect(page.locator('.source-badge', { hasText: 'rehearsal' })).toBeVisible()
+    const control = page.getByRole('button', {
+      name: condition < 3 ? /next qualification condition/i : /^Replay$/,
+    })
+    await control.scrollIntoViewIfNeeded()
+    const box = await control.boundingBox()
+    expect(box).not.toBeNull()
+    expect(box!.y).toBeGreaterThanOrEqual(58)
+    expect(box!.y + box!.height).toBeLessThanOrEqual(640)
+    if (condition < 3) await control.click()
+  }
+})

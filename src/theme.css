@@ -219,7 +219,7 @@ blockquote { font: 500 clamp(1.8rem, 4vw, 3.3rem)/1.28 'Red Hat Display'; margin
 .live-workspace-steps button.active { color: var(--text); border-left-color: var(--intel-cyan); background: var(--intel-cyan-dim); }
 .live-workspace-steps button.complete { color: var(--text-secondary); cursor: pointer; }
 .live-workspace-steps button.complete span { color: var(--success); border-color: var(--success); }
-.live-workspace-main { min-width: 0; display: flex; flex-direction: column; padding: 1.2rem; }
+.live-workspace-main { min-width: 0; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; padding: 1.2rem; }
 .live-workspace .journey-status { justify-items: start; margin: 0; }
 .live-workspace .journey-status small, .live-workspace-context > span, .live-workspace-intake > span { color: var(--intel-cyan); font: 700 .58rem 'Red Hat Mono'; letter-spacing: .08em; }
 .live-workspace .journey-status strong { font: 700 clamp(1.5rem, 2.5vw, 2.2rem) 'Red Hat Display'; }
