@@ -44,12 +44,22 @@ test('internal architecture and live-condition reveals fit at both desktop sizes
   }
 
   await page.goto('/?act=1&scene=0')
-  for (let index = 0; index < 8; index += 1) {
-    await assertFit(`architecture reveal ${index}`)
-    // Let the browser wait for visibility and animation stability, as a
-    // participant must. Force-click races the outgoing scene transition.
-    await page.getByRole('button', { name: /Reveal technical boundary|Ask next question|Complete architecture/ }).click()
+  for (let index = 0; index < 4; index += 1) {
+    const question = await page.locator('.architecture-question h2').innerText()
+    await page.getByRole('button', { name: 'Reveal technical boundary', exact: true }).click()
+    await expect(page.locator('.architecture-answer')).toBeVisible()
+    await assertFit(`architecture answer ${index}`)
+    await page.getByRole('button', {
+      name: index === 3 ? 'Complete architecture' : 'Ask next question →', exact: true,
+    }).click()
+    // AnimatePresence retains the outgoing question during its exit. Do not
+    // accidentally click that stale control a second time and skip a layer.
+    if (index < 3) {
+      await expect(page.locator('.architecture-question h2')).not.toHaveText(question)
+      await expect(page.getByRole('button', { name: 'Reveal technical boundary', exact: true })).toBeVisible()
+    }
   }
+  await expect(page.getByRole('button', { name: 'Replay architecture' })).toBeVisible()
   await assertFit('architecture complete')
 
   await page.goto('/?act=3&scene=0')
